@@ -159,6 +159,7 @@ shake level 1:8-8.7*/
 
   var g = svg.append("g");
   level(magnitude);
+  console.log(className);
 
   var imgs = g.append("svg:image")
             .attr("xlink:href", "img/house01.png")
@@ -220,32 +221,32 @@ shake level 1:8-8.7*/
   function level(magnitude) {
 
     if (magnitude<6) {
-        console.log("level1")
+        // console.log("level1")
         className = "level1";
         return className;
     
     } else if (magnitude>=6 && magnitude<6.5) {
-        console.log("level2") 
+        // console.log("level2") 
         className = "level2";
         return className;
 
     } else if (magnitude>=6.5 && magnitude<7) {
-        console.log("level3") 
+        // console.log("level3") 
         className = "level3";
         return className;
 
     } else if (magnitude>=7 && magnitude<7.5) {
-        console.log("level4") 
+        // console.log("level4") 
         className = "level4";
         return className;
 
     } else if (magnitude>=7.5 && magnitude<8) {
-        console.log("level5") 
+        // console.log("level5") 
         className = "level5";
         return className;
 
     } else{
-        console.log("level6") 
+        // console.log("level6") 
         className = "level6";
         return className;
 

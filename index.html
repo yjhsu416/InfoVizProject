@@ -13,7 +13,10 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="datamaps.world.min.js"></script>
+<!--     <script src="earthquake.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="earthquake.css">
     <link rel="stylesheet" type="text/css" href="index.css">
+    
 
 </HEAD>
 
@@ -41,10 +44,6 @@
         var rScale = d3.scale.linear()
             .domain([5, 9])
             .range([2, 40]);
-
-        var colorScale = d3.scale.linear()
-            .domain([5,9])
-            .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
 
         //get year of 1965, store index to yearIndex
         var yearIndex = new Array();
@@ -87,6 +86,7 @@
                 borderWidth: 0,
                 borderColor: '#FFFFFF'
             })
+             // console.log(eqdata[i].Magnitude)
         }
 
         //render map
@@ -112,13 +112,71 @@
 
         //draw bubbles for bombs
         bombMap.bubbles(bombsnew, {
+
             popupTemplate: function (geo, data) {
+                    var magnitude = data.magnitude;
+                    drawEarthquake(magnitude);
                     return ['<div class="hoverinfo">' +  data.name,
                     '<br/>Magnitude: ' +  data.magnitude + '',
                     '<br/>Depth: ' +  data.depth + '',
                     '</div>'].join('');
+
             }
-        }); 
+
+        });
+
+        function drawEarthquake(magnitude){
+             //place holder : will put into data.magnitude 
+            var magnitude = magnitude;
+            //
+
+            var width = 1200,
+                height = 1200,
+                className = "level0";
+            levelEarthquake(magnitude);
+            // console.log(className);
+
+            var svg = d3.select("body").append("svg")
+                  .attr("width", width)
+                  .attr("height", height);
+
+            var g = svg.append("g");
+
+            var imgs = g.append("svg:image")
+                        .attr("xlink:href", "img/house01.png")
+                        .attr("class", className)
+                        .attr("x", "60")
+                        .attr("y", "60")
+                        .attr("width", "300")
+                        .attr("height", "300");
+            var text = g.append("text")
+                        .text('Magnitude:' + magnitude)
+                        .style('fill', "white")
+                        .attr("x", "80")
+                        .attr("y", "80")
+
+            function levelEarthquake(magnitude) {
+
+                if (magnitude < 6) {
+                    className = "level1";
+
+                } else if (magnitude >= 6 && magnitude < 6.5) {
+                    className = "level2";
+                } else if (magnitude >= 6.5 && magnitude < 7) {         
+                    className = "level3";
+                } else if (magnitude >= 7 && magnitude < 7.5) {
+                    className = "level4";
+                } else if (magnitude >= 7.5 && magnitude < 8) {
+                    className = "level5";
+                } else{
+                    className = "level6";
+                }
+                return className;
+            }
+        }
+
+
+
     }
 
 
