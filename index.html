@@ -51,7 +51,7 @@
         var yearIndex = new Array();
         for(var idx in eqdata) {
             var year = "";
-            for(i=6; i<10; i++) {
+            for(i = 6; i < 10; i++) {
                 year = year+eqdata[idx].Date[i];
             }
             if(year == yearPlot) {
@@ -68,14 +68,18 @@
             var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
             var magnitudeValue = parseFloat(eqdata[yearIndex[i]].Magnitude);
             var colorfillKey;
-            if (magnitudeValue <= 6) {
+            if (magnitudeValue < 6) {;
                 colorfillKey = 'C1';
-            } else if(magnitudeValue <= 7) {
+            } else if (magnitudeValue >= 6 && magnitudeValue < 6.5) {
                 colorfillKey = 'C2';
-            } else if(magnitudeValue <= 8) {
+            } else if (magnitudeValue >= 6.5 && magnitudeValue < 7) {         
                 colorfillKey = 'C3';
-            } else {
+            } else if (magnitudeValue >= 7 && magnitudeValue < 7.5) {
                 colorfillKey = 'C4';
+            } else if (magnitudeValue >= 7.5 && magnitudeValue < 8) {
+                colorfillKey = 'C5';
+            } else{
+                colorfillKey = 'C6';
             }
             bombsnew.push({
                 name: date+yearPlot + "," +eqdata[yearIndex[i]].Time,
@@ -100,10 +104,12 @@
                 highlightOnHover: false
             },
             fills: {
-                'C1':'#b2d2ff',
-                'C2':'#4f9aff',
-                'C3':'#006eff',
-                'C4':'#0045a3',
+                'C1':'#C8DDFB',
+                'C2':'#6496D9',
+                'C3':'#2B58AD',
+                'C4':'#2843DC',
+                'C5':'#132FB0',
+                'C6':'#0011A3',
                 defaultFill: '#e3e5e0'
             },
             data: {
@@ -135,7 +141,7 @@
             var width = 1200,
                 height = 1200,
                 className = "level0";
-            levelEarthquake(magnitude);
+            // levelEarthquake(magnitude);
             // console.log(className);
 
             var svg = d3.select("body").append("svg")
@@ -144,7 +150,8 @@
                   .attr("height", height);
 
             var g = svg.append("g");
-
+            levelEarthquake(magnitude);
+            // console.log(className)            
             var imgs = g.append("svg:image")
                         .attr("xlink:href", "img/house01.png")
                         .attr("class", className)
@@ -162,21 +169,27 @@
 
                 if (magnitude < 6) {
                     className = "level1";
-
+                    colorfillKey = 'C1';
                 } else if (magnitude >= 6 && magnitude < 6.5) {
                     className = "level2";
+                    colorfillKey = 'C2';
                 } else if (magnitude >= 6.5 && magnitude < 7) {         
                     className = "level3";
+                    colorfillKey = 'C3';
                 } else if (magnitude >= 7 && magnitude < 7.5) {
                     className = "level4";
+                    colorfillKey = 'C4';
                 } else if (magnitude >= 7.5 && magnitude < 8) {
                     className = "level5";
+                    colorfillKey = 'C5';
                 } else{
                     className = "level6";
+                    colorfillKey = 'C6';
                 }
                 return className;
             }
         }
+
 
 
 
