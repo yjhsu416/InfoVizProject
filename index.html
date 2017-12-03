@@ -129,7 +129,7 @@
              //place holder : will put into data.magnitude 
             var magnitude = magnitude;
             //
-
+            d3.selectAll("svg.house").remove()
             var width = 1200,
                 height = 1200,
                 className = "level0";
@@ -137,6 +137,7 @@
             // console.log(className);
 
             var svg = d3.select("body").append("svg")
+                  .attr("class", "house")
                   .attr("width", width)
                   .attr("height", height);
 
