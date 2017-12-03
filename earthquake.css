@@ -27,14 +27,15 @@ image.level6{
   animation-iteration-count: infinite;
 }
 
+
 /*magnitude : 5.5-8.7*/
 
 /*shake level 1: 5.5-6
-shake level 1: 6.1-6.5
-shake level 1:6.5-7
-shake level 1:7-7.5
-shake level 1:7.5-8
-shake level 1:8-8.7*/
+shake level 2: 6.1-6.5
+shake level 3:6.5-7
+shake level 4:7-7.5
+shake level 5:7.5-8
+shake level 6:8-8.7*/
 
 @keyframes shake1 {
   0% { transform: translate(1px, 1px) rotate(0deg); }

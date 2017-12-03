@@ -24,21 +24,21 @@
 
 <h1>Group Project</h1>
 <p style="text-align:center;margin-bottom:40px">SI 649 Group 7</p>
-
+<input type="range" min="1965" max="2016" value="2016" step="1" onchange="showValue(this.value);" />
+<span id="range">2016</span>
 
 
 <div id="container1"></div>
 
 <script>
-
     queue()
         .defer(d3.csv, "database.csv")
         .await(ready);
 
     function ready(error, data) {
-
         var eqdata = data;
-        var yearPlot = "1965" //get this value from slider
+        var yearPlot = document.getElementById("range").innerHTML;
+        // console.log(yearPlot); //get this value from slider
 
         //radius scale and color scale
         var rScale = d3.scale.linear()
@@ -179,6 +179,13 @@
 
 
     }
+
+    function showValue(newValue)
+    {   d3.selectAll("svg.datamap").remove()
+        document.getElementById("range").innerHTML=newValue;
+        queue().defer(d3.csv, 'database.csv').await(ready);
+    }
+
 
 
 </script>
