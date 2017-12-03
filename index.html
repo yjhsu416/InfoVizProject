@@ -1,0 +1,129 @@
+<html>
+<HEAD>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Choropleth with auto-calculated color (Highmaps)</title>
+  <style>
+    #container1 { border:0px dotted blue; width: 1000px; height: 500px; margin:0 auto; }
+  </style>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="datamaps.world.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+</HEAD>
+
+<body>
+
+<h1>Group Project</h1>
+<p style="text-align:center;margin-bottom:40px">SI 649 Group 7</p>
+
+
+
+<div id="container1"></div>
+
+<script>
+
+    queue()
+        .defer(d3.csv, "database.csv")
+        .await(ready);
+
+    function ready(error, data) {
+
+        var eqdata = data;
+        var yearPlot = "1965" //get this value from slider
+
+        //radius scale and color scale
+        var rScale = d3.scale.linear()
+            .domain([5, 9])
+            .range([2, 40]);
+
+        var colorScale = d3.scale.linear()
+            .domain([5,9])
+            .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+
+        //get year of 1965, store index to yearIndex
+        var yearIndex = new Array();
+        for(var idx in eqdata) {
+            var year = "";
+            for(i=6; i<10; i++) {
+                year = year+eqdata[idx].Date[i];
+            }
+            if(year == yearPlot) {
+                //console.log(year);
+                yearIndex.push(idx);
+            }
+        }
+
+        //create bomb data
+        var bombsnew = [];
+        var len = yearIndex.length;
+        for(var i = 0; i < len; i++) {
+            var dateValue=eqdata[yearIndex[i]].Date;
+            var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
+            var magnitudeValue = parseFloat(eqdata[yearIndex[i]].Magnitude);
+            var colorfillKey;
+            if (magnitudeValue <= 6) {
+                colorfillKey = 'C1';
+            } else if(magnitudeValue <= 7) {
+                colorfillKey = 'C2';
+            } else if(magnitudeValue <= 8) {
+                colorfillKey = 'C3';
+            } else {
+                colorfillKey = 'C4';
+            }
+            bombsnew.push({
+                name: date+yearPlot + "," +eqdata[yearIndex[i]].Time,
+                magnitude: parseFloat(eqdata[yearIndex[i]].Magnitude),
+                depth: parseFloat(eqdata[yearIndex[i]].Depth),
+                radius: rScale(parseFloat(eqdata[yearIndex[i]].Magnitude)),
+                fillKey: colorfillKey,
+                latitude: parseFloat(eqdata[yearIndex[i]].Latitude),
+                longitude: parseFloat(eqdata[yearIndex[i]].Longitude),
+                borderWidth: 0,
+                borderColor: '#FFFFFF'
+            })
+        }
+
+        //render map
+        var bombMap = new Datamap({
+            element: document.getElementById('container1'),
+            scope: 'world',
+            geographyConfig: {
+                popupOnHover: false,
+                highlightOnHover: false
+            },
+            fills: {
+                'C1':'#b2d2ff',
+                'C2':'#4f9aff',
+                'C3':'#006eff',
+                'C4':'#0045a3',
+                defaultFill: '#e3e5e0'
+            },
+            data: {
+                // 'RUS': {fillKey: 'RUS'},
+                // 'USA': {fillKey: 'USA'}
+            }
+        });
+
+        //draw bubbles for bombs
+        bombMap.bubbles(bombsnew, {
+            popupTemplate: function (geo, data) {
+                    return ['<div class="hoverinfo">' +  data.name,
+                    '<br/>Magnitude: ' +  data.magnitude + '',
+                    '<br/>Depth: ' +  data.depth + '',
+                    '</div>'].join('');
+            }
+        }); 
+    }
+
+
+</script>
+</div>
+
+</body>
+</html>
