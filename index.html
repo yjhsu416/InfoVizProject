@@ -3,7 +3,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Choropleth with auto-calculated color (Highmaps)</title>
+    <title>Earthquake</title>
     <style>
         #container1 { border:0px dotted blue; width: 1000px; height: 500px; margin:0 auto; }
     </style>
@@ -149,7 +149,9 @@
                 drawEarthquake(magnitude);
                 
                 // console.log(data);
-                drawDepth(magnitude); //still working on here
+                var depth = data.depth
+                drawDepth(depth); //still working on here
+                console.log(depth);
                 
                 return ['<div class="hoverinfo">' +  data.name,
                 '<br/>Magnitude: ' +  data.magnitude + '',
@@ -217,40 +219,83 @@
         }
 
         function drawDepth(m) {
-              var depthDIV = d3.select('body')
+
+            var depthDIV = d3.select('body')
                                 .append('div')
                                 .attr("class","depthDIV");
 
             var depthTitle = depthDIV.append('h3')
-                                            .text("Depth")
-                                            .attr("font-family","Open Sans");
-            var svgWidth = 300;
-            var svgHeight = 300;
-            var depthSVG = depthDIV.append('svg')// create an <svg> element
+                                     .text("Depth")
+                                     .attr("font-family","Open Sans");
+
+            var svgWidth = 500;
+            var svgHeight = 500;
+
+            var circleRadii = [150, 100, 60];
+
+            var depthSVG = depthDIV.append('svg')// create an <svg> element'
+                                    .attr('class', 'depth-canvas')
                                     .attr('width', svgWidth) // set its dimensions
                                     .attr('height', svgHeight);
-            console.log(m);
-            var depthHolder = depthSVG.selectAll('.depth')
-                                        .data(m)
-                                        .enter();
 
-            var depthBase = depthHolder.append('circle')
-                            .attr("class","depth")
-                            .attr('cx', "150")
-                            .attr('cy', "150")
-                            .attr('r', "150")
-                            .style('fill', "white");
-            
+            var circles = depthSVG.selectAll('circle')
+                                  .data(circleRadii)
+                                  .enter()
+                                  .append('circle');
+
+            var circleBase = circles.attr('cx', 200)
+                                    .attr('cy', 200)
+                                    .attr('r', function (d) { return d; })
+                                    .style('fill', function(d) {
+                                        var returnColor;
+                                        if (d === 150) { returnColor = 'green';}
+                                        else if (d === 100) { returnColor = 'blue';}
+                                        else if (d === 60) { returnColor = 'red'; }
+                                        return returnColor;
+                                    });
+
             var angle = 0.25 * Math.PI;
             var nx = Math.cos(angle) + 50;
             var ny = Math.sin(angle) + 50;
+
+
+            var depthNode = depthSVG.selectAll('depth')
+                                    .data(m)
+                                    .enter()
+                                    .append('circle')
+                                    .append('class','depth')
+                                    .attr('cx', nx)
+                                    .attr('cy', ny)
+                                    .attr('r', function(d) {return d;})
+                                    .style('fill', 'yellow');
+
+
+
+            // console.log(m);
+            // var depthHolder = depthSVG.selectAll('.depth')
+            //                             .data(m)
+            //                             .enter();
+
+            // var depthBase = depthSVG.append('circle')
+            //                 .attr("class","depth")
+            //                 .attr('cx', 150)
+            //                 .attr('cy', 150)
+            //                 .attr('r', 150)
+            //                 .style('fill', "white");
             
-            var depthNode = depthHolder.append('circle')
-                            .attr("class","depth")
-                            .attr('cx', nx)
-                            .attr('cy', ny)
-                            .attr('r', function(d, i){return d})
-                            .style("fill", "red");   
+
+            
+            // var depthNode = depthHolder.append('circle')
+            //                 .attr("class","depth")
+            //                 .attr('cx', nx)
+            //                 .attr('cy', ny)
+            //                 .attr('r', function(d){return d})
+            //                 .style("fill", "red");   
+
+
+
+
+
      
 //         var radius = 5;
 //         var numNodes = 10;
