@@ -31,18 +31,23 @@
 <p style="text-align:center;margin-bottom:40px">SI 649 Group 7</p>
 
 <div class="container">
-  <div class="row">
+  <div class="row" style="width: 100%;">
     <div id="slidecontainer">
       <input type="range" min="1965" max="2016" value="2016" step="1" class="slider" onchange="showValue(this.value);" />
       <span id="range">2016</span>
     </div>
   </div>
-  <div class="row">
+  <div class="row" style="width: 100%;">
     <div class="col-sm-12">
         <div id="container1"></div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" style="width: 100%;">
+    <div id="houseChart" class="col-sm-6" style="width: 50%;">
+    </div>
+    <div id="depthChart" class="col-sm-6" style="width: 50%;">
+    </div></br>
+    <div class="row" style="width: 100%;">
     <div class="col-sm-12">
         <div id="chartContainer" style="height: 360px; width: 100%;"></div>
     </div>
@@ -163,15 +168,20 @@
              //place holder : will put into data.magnitude 
             var magnitude = magnitude;
             //
-            d3.selectAll("svg.house").remove();
-            var width = 1200,
+            d3.selectAll(".house").remove();
+            var width = 500,
 //                 height = 1200,
                 height = 500,
                 className = "level0";
             // levelEarthquake(magnitude);
             // console.log(className);
 
-            var svg = d3.select("body").append("svg")
+            var houseDIV = d3.selectAll("#houseChart")
+                        .append("div")
+                        .attr("class", "house")
+                        .style("width", "100%");
+            
+            var svg = houseDIV.append("svg")
                   .attr("class", "house")
                   .attr("width", width)
                   .attr("height", height);
@@ -220,9 +230,10 @@
         function drawDepth(d) {
             d3.selectAll(".depth").remove();
             d3.selectAll(".depth-nodes").remove();
-            var depthDIV = d3.select('body')
+            var depthDIV = d3.selectAll("#depthChart")
                                 .append('div')
-                                .attr("class","depth");
+                                .attr("class","depth")
+                                .style("width", "100%");
 
             var depthTitle = depthDIV.append('h3')
                                      .text("Depth")
