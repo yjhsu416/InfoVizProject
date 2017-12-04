@@ -148,10 +148,8 @@
                 var magnitude = data.magnitude;
                 drawEarthquake(magnitude);
                 
-                // console.log(data);
-                var depth = data.depth
-                drawDepth(depth); //still working on here
-                console.log(depth);
+//                 var depth = data.depth
+                drawDepth(data); //still working on here
                 
                 return ['<div class="hoverinfo">' +  data.name,
                 '<br/>Magnitude: ' +  data.magnitude + '',
@@ -165,9 +163,10 @@
              //place holder : will put into data.magnitude 
             var magnitude = magnitude;
             //
-            d3.selectAll("svg.house").remove()
+            d3.selectAll("svg.house").remove();
             var width = 1200,
-                height = 1200,
+//                 height = 1200,
+                height = 500,
                 className = "level0";
             // levelEarthquake(magnitude);
             // console.log(className);
@@ -217,140 +216,118 @@
                 return className;
             }
         }
-
-        function drawDepth(m) {
-
+        
+        function drawDepth(d) {
+            d3.selectAll(".depth").remove();
+            d3.selectAll(".depth-nodes").remove();
             var depthDIV = d3.select('body')
                                 .append('div')
-                                .attr("class","depthDIV");
+                                .attr("class","depth");
 
             var depthTitle = depthDIV.append('h3')
                                      .text("Depth")
-                                     .attr("font-family","Open Sans");
+                                     .attr('class', 'depth');
+//                                      .attr("font-family","Open Sans");
 
+            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             var svgWidth = 500;
             var svgHeight = 500;
+            var baseRadius = 150;
 
-            var circleRadii = [150, 100, 60];
+//             var circleRadii = [150, 100, 60];
 
             var depthSVG = depthDIV.append('svg')// create an <svg> element'
-                                    .attr('class', 'depth-canvas')
+                                    .attr('class', 'depth')
                                     .attr('width', svgWidth) // set its dimensions
                                     .attr('height', svgHeight);
-
-            var circles = depthSVG.selectAll('circle')
-                                  .data(circleRadii)
-                                  .enter()
-                                  .append('circle');
-
-            var circleBase = circles.attr('cx', 200)
-                                    .attr('cy', 200)
-                                    .attr('r', function (d) { return d; })
-                                    .style('fill', function(d) {
-                                        var returnColor;
-                                        if (d === 150) { returnColor = 'green';}
-                                        else if (d === 100) { returnColor = 'blue';}
-                                        else if (d === 60) { returnColor = 'red'; }
-                                        return returnColor;
-                                    });
-
-            var angle = 0.25 * Math.PI;
-            var nx = Math.cos(angle) + 50;
-            var ny = Math.sin(angle) + 50;
-
-
-            var depthNode = depthSVG.selectAll('depth')
-                                    .data(m)
-                                    .enter()
-                                    .append('circle')
-                                    .append('class','depth')
-                                    .attr('cx', nx)
-                                    .attr('cy', ny)
-                                    .attr('r', function(d) {return d;})
-                                    .style('fill', 'yellow');
-
-
-
-            // console.log(m);
-            // var depthHolder = depthSVG.selectAll('.depth')
-            //                             .data(m)
-            //                             .enter();
-
-            // var depthBase = depthSVG.append('circle')
-            //                 .attr("class","depth")
-            //                 .attr('cx', 150)
-            //                 .attr('cy', 150)
-            //                 .attr('r', 150)
-            //                 .style('fill', "white");
             
-
+            //write months around the circle
+            var monthTitles = [];
+            for (i = 0; i < monthNames.length; i++){
+                monthTitles[i] = depthSVG.append('text')
+                                    .text(monthNames[i])
+                                    .attr('x', svgWidth/2 - 12 + (baseRadius + 20)*Math.cos(i*Math.PI/6 - Math.PI/2))
+                                    .attr('y', svgHeight/2 + 5 + (baseRadius + 20)*Math.sin(i*Math.PI/6 - Math.PI/2))
+//                                     .attr("font-family","Open Sans")
+                                    .attr("font-size","12pt")
+                                    .attr("fill", "white");
+            }
             
-            // var depthNode = depthHolder.append('circle')
-            //                 .attr("class","depth")
-            //                 .attr('cx', nx)
-            //                 .attr('cy', ny)
-            //                 .attr('r', function(d){return d})
-            //                 .style("fill", "red");   
+//             var circles = depthSVG.selectAll('circle')
+//                                   .data(circleRadii)
+//                                   .enter()
+//                                   .append('circle');
+                                        
+            var depthBase = depthSVG.append('circle')
+                            .attr("class","depth")
+                            .attr('cx', svgWidth/2)
+                            .attr('cy', svgHeight/2)
+                            .attr('r', baseRadius)
+                            .style('fill', "white");
+            
+            var depthCenter = depthSVG.append('circle')
+                            .attr("class","depth")
+                            .attr('cx', svgWidth/2)
+                            .attr('cy',svgHeight/2)
+                            .attr('r', 2)
+                            .style('fill', "black");
+            
+            var depthDeep = depthSVG.append('circle')
+                            .attr("class","depth")
+                            .attr('cx', svgWidth/2)
+                            .attr('cy',svgHeight/2)
+                            .attr('r', 20)
+                            .style('stroke', "black")
+                            .style('fill-opacity', 0);
+            
+            var depthMid = depthSVG.append('circle')
+                            .attr("class","depth")
+                            .attr('cx', svgWidth/2)
+                            .attr('cy',svgHeight/2)
+                            .attr('r', 60)
+                            .style('stroke', "black")
+                            .style('fill-opacity', 0);
+            
+            var depthShallow = depthSVG.append('circle')
+                            .attr("class","depth")
+                            .attr('cx', svgWidth/2)
+                            .attr('cy',svgHeight/2)
+                            .attr('r', 110)
+                            .style('stroke', "black")
+                            .style('fill-opacity', 0);
+            
+//             var monthList = [];
+//             var angleList = [];
+            
+            var depthHolder = depthSVG.selectAll('.depth-nodes')
+                                        .data(d)
+                                        .enter();
+                          
+            var t = new Date(d.name.split(",",1));
+//             monthList.push(t.getMonth()+1);
+            var angle = (t.getMonth()+1)*Math.PI/6 - 2*Math.PI/3; //Put January at 12o'clock
+            
+            var depthScale = d3.scale.linear()
+                                    .domain([0, 700])
+                                    .range([30,130]);
+            var magScale = d3.scale.linear()
+                                    .domain([5, 9.5])
+                                    .range([5, 20]);
 
+            var depthNode = depthSVG.append('circle')
+                            .attr("class","depth-nodes")
+                            .attr('cx', svgWidth/2 + (baseRadius-depthScale(d.depth))*Math.cos(angle))
+                            .attr('cy', svgHeight/2 + (baseRadius-depthScale(d.depth))*Math.sin(angle))
+                            .attr('r', magScale(d.magnitude))
+                            .style("fill", function(){
+                                var nColor;
+                                if (d.magnitude <= 6){nColor = "green";}
+                                else if (d.magnitude >= 8){nColor = "red";}
+                                else {nColor = "yellow";}
+                                return nColor;
+                            });   
 
-
-
-
-     
-//         var radius = 5;
-//         var numNodes = 10;
-//        var createNodes = function (numNodes, radius) {
-//          var nodes = [], 
-//              width = (radius * 2) + 50,
-//              height = (radius * 2) + 50,
-//              angle,
-//              x,
-//              y,
-//              i;
-//          for (i=0; i<numNodes; i++) {
-//           angle = (i / (numNodes/2)) * Math.PI; // Calculate the angle at which the element will be placed.
-//                                                 // For a semicircle, we would use (i / numNodes) * Math.PI.
-//           x = ((i+1) * Math.cos(angle)) + (width/2); // Calculate the x position of the element.
-//           y = ((i+1) * Math.sin(angle)) + (width/2); // Calculate the y position of the element.
-//           nodes.push({'id': i, 'x': x, 'y': y});
-//          }
-//          return nodes;
-//        }
-// 
-//        var createSvg = function (radius, callback) {
-//          //d3.selectAll('svg').remove();
-//          var svg = d3.select('#canvas').append('svg:svg')
-//                     .attr('width', (radius * 2) + 50)
-//                     .attr('height', (radius * 2) + 50);
-//          callback(svg);
-//        }
-// 
-//        var createElements = function (svg, nodes, elementRadius) {
-//          element = svg.selectAll('circle')
-//                         .data(nodes)
-//                       .enter().append('svg:circle')
-//                         .attr('r', elementRadius)
-//                         .attr('cx', function (d, i) {
-//                           return d.x;
-//                         })
-//                         .attr('cy', function (d, i) {
-//                           return d.y;
-//                         })
-//                         .style("fill","red");
-//        }
-// 
-//        var draw = function () {
-//          // var numNodes = $("#numNodes").val() || 100;
-// //          var radius = $("#radius").val() || 200;
-//          var nodes = createNodes(numNodes, radius);
-//          createSvg(radius, function (svg) {
-//            createElements(svg, nodes, 2);
-//          });
-//        }
-//         draw();
-//       }
-
-    
+    }
     }
     
     function showValue(newValue)
@@ -358,6 +335,8 @@
         document.getElementById("range").innerHTML=newValue;
         queue().defer(d3.csv, 'database.csv').await(ready);
     }
+    
+    
 
     function createChart(newDataPoints){
         var chart = new CanvasJS.Chart("chartContainer", {
@@ -390,9 +369,8 @@
         });
     chart.render();
 }
-
-}
-
+    
+    
 </script>
 </div>
 
