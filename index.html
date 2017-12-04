@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="earthquake.css">
     <link rel="stylesheet" type="text/css" href="index.css">
     
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!--     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.min.js"></script> -->
+
+    
 </HEAD>
 
 <body>
@@ -44,6 +48,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
     queue()
@@ -130,7 +135,7 @@
                 // 'USA': {fillKey: 'USA'}
             }
         });
-
+        
         //draw bubbles for bombs
         bombMap.bubbles(bombsnew, {
 
@@ -142,7 +147,10 @@
                     
                 var magnitude = data.magnitude;
                 drawEarthquake(magnitude);
-
+                
+                // console.log(data);
+                drawDepth(magnitude); //still working on here
+                
                 return ['<div class="hoverinfo">' +  data.name,
                 '<br/>Magnitude: ' +  data.magnitude + '',
                 '<br/>Depth: ' +  data.depth + '',
@@ -208,11 +216,98 @@
             }
         }
 
+        function drawDepth(m) {
+              var depthDIV = d3.select('body')
+                                .append('div')
+                                .attr("class","depthDIV");
 
+            var depthTitle = depthDIV.append('h3')
+                                            .text("Depth")
+                                            .attr("font-family","Open Sans");
+            var svgWidth = 300;
+            var svgHeight = 300;
+            var depthSVG = depthDIV.append('svg')// create an <svg> element
+                                    .attr('width', svgWidth) // set its dimensions
+                                    .attr('height', svgHeight);
+            console.log(m);
+            var depthHolder = depthSVG.selectAll('.depth')
+                                        .data(m)
+                                        .enter();
 
+            var depthBase = depthHolder.append('circle')
+                            .attr("class","depth")
+                            .attr('cx', "150")
+                            .attr('cy', "150")
+                            .attr('r', "150")
+                            .style('fill', "white");
+            
+            var angle = 0.25 * Math.PI;
+            var nx = Math.cos(angle) + 50;
+            var ny = Math.sin(angle) + 50;
+            
+            var depthNode = depthHolder.append('circle')
+                            .attr("class","depth")
+                            .attr('cx', nx)
+                            .attr('cy', ny)
+                            .attr('r', function(d, i){return d})
+                            .style("fill", "red");   
+     
+//         var radius = 5;
+//         var numNodes = 10;
+//        var createNodes = function (numNodes, radius) {
+//          var nodes = [], 
+//              width = (radius * 2) + 50,
+//              height = (radius * 2) + 50,
+//              angle,
+//              x,
+//              y,
+//              i;
+//          for (i=0; i<numNodes; i++) {
+//           angle = (i / (numNodes/2)) * Math.PI; // Calculate the angle at which the element will be placed.
+//                                                 // For a semicircle, we would use (i / numNodes) * Math.PI.
+//           x = ((i+1) * Math.cos(angle)) + (width/2); // Calculate the x position of the element.
+//           y = ((i+1) * Math.sin(angle)) + (width/2); // Calculate the y position of the element.
+//           nodes.push({'id': i, 'x': x, 'y': y});
+//          }
+//          return nodes;
+//        }
+// 
+//        var createSvg = function (radius, callback) {
+//          //d3.selectAll('svg').remove();
+//          var svg = d3.select('#canvas').append('svg:svg')
+//                     .attr('width', (radius * 2) + 50)
+//                     .attr('height', (radius * 2) + 50);
+//          callback(svg);
+//        }
+// 
+//        var createElements = function (svg, nodes, elementRadius) {
+//          element = svg.selectAll('circle')
+//                         .data(nodes)
+//                       .enter().append('svg:circle')
+//                         .attr('r', elementRadius)
+//                         .attr('cx', function (d, i) {
+//                           return d.x;
+//                         })
+//                         .attr('cy', function (d, i) {
+//                           return d.y;
+//                         })
+//                         .style("fill","red");
+//        }
+// 
+//        var draw = function () {
+//          // var numNodes = $("#numNodes").val() || 100;
+// //          var radius = $("#radius").val() || 200;
+//          var nodes = createNodes(numNodes, radius);
+//          createSvg(radius, function (svg) {
+//            createElements(svg, nodes, 2);
+//          });
+//        }
+//         draw();
+//       }
 
+    
     }
-
+    
     function showValue(newValue)
     {   d3.selectAll("svg.datamap").remove()
         document.getElementById("range").innerHTML=newValue;
@@ -251,7 +346,7 @@
     chart.render();
 }
 
-
+}
 
 </script>
 </div>
