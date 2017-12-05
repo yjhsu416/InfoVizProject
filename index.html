@@ -59,6 +59,8 @@
     queue()
         .defer(d3.csv, "database.csv")
         .await(ready);
+    var check = 1; //check if the map has already been created. 
+    var bombMap;
 
     function ready(error, data) {
         var eqdata = data;
@@ -89,27 +91,36 @@
         for(var i = 0; i < len; i++) {
             var dateValue=eqdata[yearIndex[i]].Date;
             var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
-            var magnitudeValue = parseFloat(eqdata[yearIndex[i]].Magnitude);
+            var depthValue = parseFloat(eqdata[yearIndex[i]].Depth);
             var colorfillKey;
-            if (magnitudeValue < 6) {;
-                colorfillKey = 'C1';
-            } else if (magnitudeValue >= 6 && magnitudeValue < 6.5) {
-                colorfillKey = 'C2';
-            } else if (magnitudeValue >= 6.5 && magnitudeValue < 7) {         
-                colorfillKey = 'C3';
-            } else if (magnitudeValue >= 7 && magnitudeValue < 7.5) {
-                colorfillKey = 'C4';
-            } else if (magnitudeValue >= 7.5 && magnitudeValue < 8) {
-                colorfillKey = 'C5';
-            } else{
+            var fillOpacityValue;
+            if (depthValue < 20) {;
                 colorfillKey = 'C6';
+                fillOpacityValue = 0.8;
+            } else if (depthValue >= 20 && depthValue < 40) {
+                colorfillKey = 'C5';
+                fillOpacityValue = 0.7;
+            } else if (depthValue >= 40 && depthValue < 60) {         
+                colorfillKey = 'C4';
+                fillOpacityValue = 0.6;
+            } else if (depthValue >= 60 && depthValue < 100) {
+                colorfillKey = 'C3';
+                fillOpacityValue = 0.5;
+            } else if (depthValue >= 100 && depthValue < 200) {
+                colorfillKey = 'C2';
+                fillOpacityValue = 0.5;
+            } else{
+                colorfillKey = 'C1';
+                fillOpacityValue = 0.5;
             }
+
             bombsnew.push({
                 name: date+yearPlot + "," +eqdata[yearIndex[i]].Time,
                 magnitude: parseFloat(eqdata[yearIndex[i]].Magnitude),
                 depth: parseFloat(eqdata[yearIndex[i]].Depth),
                 radius: rScale(parseFloat(eqdata[yearIndex[i]].Magnitude)),
                 fillKey: colorfillKey,
+                fillOpacity: fillOpacityValue,
                 latitude: parseFloat(eqdata[yearIndex[i]].Latitude),
                 longitude: parseFloat(eqdata[yearIndex[i]].Longitude),
                 borderWidth: 0,
@@ -118,28 +129,12 @@
              // console.log(eqdata[i].Magnitude)
         }
 
-        //render map
-        var bombMap = new Datamap({
-            element: document.getElementById('container1'),
-            scope: 'world',
-            geographyConfig: {
-                popupOnHover: false,
-                highlightOnHover: false
-            },
-            fills: {
-                'C1':'#C8DDFB',
-                'C2':'#6496D9',
-                'C3':'#2B58AD',
-                'C4':'#2843DC',
-                'C5':'#132FB0',
-                'C6':'#0011A3',
-                defaultFill: '#e3e5e0'
-            },
-            data: {
-                // 'RUS': {fillKey: 'RUS'},
-                // 'USA': {fillKey: 'USA'}
-            }
-        });
+        //render map only once.
+        if(check == 1){
+            bombMap = plotMap();
+            check = 0;
+        }
+        
         
         //draw bubbles for bombs
         bombMap.bubbles(bombsnew, {
@@ -163,6 +158,39 @@
             }
 
         });
+
+        function plotMap() {
+            var Map = new Datamap({
+            element: document.getElementById('container1'),
+            scope: 'world',
+            geographyConfig: {
+                popupOnHover: false,
+                highlightOnHover: false
+            },
+            fills: {
+                'C1':'#C8DDFB',
+                'C2':'#6496D9',
+                'C3':'#2B58AD',
+                'C4':'#2843DC',
+                'C5':'#132FB0',
+                'C6':'#0011A3',
+                defaultFill: '#e3e5e0'
+            },
+            bubblesConfig: {
+                highlightOnHover: true,
+                highlightFillColor: '#FC8D59',
+                highlightBorderColor: 'rgba(250, 15, 160, 0.2)',
+                highlightBorderWidth: 2,
+                highlightBorderOpacity: 1,
+                highlightFillOpacity: 0.85,
+            },
+            data: {
+                // 'RUS': {fillKey: 'RUS'},
+                // 'USA': {fillKey: 'USA'}
+            }
+            });
+            return Map;
+        }
 
         function drawEarthquake(magnitude){
              //place holder : will put into data.magnitude 
@@ -342,7 +370,7 @@
     }
     
     function showValue(newValue)
-    {   d3.selectAll("svg.datamap").remove()
+    {   //d3.selectAll("svg.datamap").remove()
         document.getElementById("range").innerHTML=newValue;
         queue().defer(d3.csv, 'database.csv').await(ready);
     }
