@@ -11,20 +11,24 @@ html {
 body {
     background-color: #2b2b2b;
     vertical-align: middle;
+    font-family: verdana;
 }
 
 div {
    word-wrap: break-word;
    width: 700px;
+   font-family: verdana;
 }
 
 h1 {
     color: #ffffff;
     text-align: center;
+    font-family: verdana;
 }
 
 h3 {
     color: #ffffff;
+    font-family: verdana;
 
 }
 
