@@ -38,12 +38,13 @@ p.thick {
 }
 /* Style the tab */
 div.tab {
-    /*margin-left: 30%;*/
+    /*margin-left: 10%;*/
     color: #ffffff;
     font-family: open sans;
     overflow: hidden;
     border: 0px solid #ccc;
     background-color: #363636;
+    /*margin: 100px;*/
     /*background-color: #2b2b2b;*/
 }
 
