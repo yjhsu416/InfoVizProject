@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>InfoViz Earthquake Template</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/canvasjs.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+	<link rel="stylesheet" href="css/template.css">
+</head>
+<body>
+	<h1 class="text-center">SI 649: Info Visualization Group Project</h1></br>
+	<div class="tab">
+		<button class="tablinks" >Overview</button>
+		<button class="tablinks" >Plate Map</button>
+		<button class="tablinks" >Depth 101</button>
+		<button class="tablinks" >Magnitude</button>
+		<button class="tablinks" >Magnitude Simulator</button>
+		<button class="tablinks" >Events</button>
+	</div>
+	</br>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9" style="width: 75%">
+				<div id="chartContainer" style="height: 480px"></div>
+			</div>
+			<div class="col-sm-3" style="width: 25%"> 
+				<h3>Side Contents</h3>
+				<!-- Replace the img tag to div or any other kind of tags -->
+				<img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+			</div>
+		</div>
+	</div><br>
+	<script type="text/javascript">
+	var dataPoints = "";
+	createChart(dataPoints);
+
+    function createChart(newDataPoints){
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "dark1", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Manitude Distrubution from 1965 - 2016"
+            },
+            axisY:{
+            	title: "Count",
+            },
+            axisX:{
+            	title: "Magnitude (Richter magnitude scale)"
+            },
+            data: [{
+                type: "column",
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "outside",
+                dataPoints: [
+                    { x: 5.5, y: 4685, indexLabel: "Highest" },
+                    { x: 5.6, y: 3967 },
+                    { x: 5.7, y: 3079 },
+                    { x: 5.8, y: 2346 },
+                    { x: 5.9, y: 1947 },
+                    { x: 6.0, y: 1580 },
+                    { x: 6.1, y: 1213 },
+                    { x: 6.2, y: 912 },
+                    { x: 6.3, y: 765 },
+                    { x: 6.4, y: 574 },
+                    { x: 6.5, y: 464 },
+                    { x: 6.6, y: 363 },
+                    { x: 6.7, y: 314 },
+                    { x: 6.8, y: 236 },
+                    { x: 6.9, y: 187 },
+                    { x: 7.0, y: 168 },
+                    { x: 7.1, y: 123 },
+                    { x: 7.2, y: 102 },
+                    { x: 7.3, y: 63 },
+                    { x: 7.4, y: 59 },
+                    { x: 7.5, y: 43 },
+                    { x: 7.6, y: 49 },
+                    { x: 7.7, y: 39 },
+                    { x: 7.8, y: 31 },
+                    { x: 7.9, y: 21 },
+                    { x: 8.0, y: 13 },
+                    { x: 8.1, y: 7 },
+                    { x: 8.2, y: 7 },
+                    { x: 8.3, y: 5 },
+                    { x: 8.4, y: 2 },
+                    { x: 8.5, y: 0, indexLabel: "Lowest" },
+                    { x: 8.6, y: 2 },
+                    { x: 8.7, y: 1 },
+                    { x: 8.8, y: 1 },
+                    { x: 8.9, y: 0, indexLabel: "Lowest" },
+                    { x: 9.0, y: 0, indexLabel: "Lowest" },
+                    { x: 9.1, y: 2 }
+                ]
+            }]
+        });
+		chart.render();
+	}
+	</script>
+</body>
+</html>
