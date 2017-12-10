@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width">
     <title>Earthquake</title>
     <style>
-        #container1 { border:0px dotted blue; width: 1000px; height: 500px; margin:0 auto; }
+        #container1 { border:0px ; width: 1000px; height: 500px;margin:0 auto; }
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" type='text/css' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -16,8 +15,10 @@
     <script src="datamaps.world.min.js"></script>
     <script type="text/javascript" src="./js/canvasjs.min.js"></script>
     <!--     <script src="earthquake.js"></script> -->
+    <link rel="stylesheet" href="./css/styles.css"> 
     <link rel="stylesheet" type="text/css" href="earthquake.css">
     <link rel="stylesheet" type="text/css" href="index.css">
+
     
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <!--     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.min.js"></script> -->
@@ -33,15 +34,22 @@
 <div class="container">
   <div class="row" style="width: 100%;">
     <div id="slidecontainer">
-      <input type="range" min="1965" max="2016" value="2016" step="1" class="slider" onchange="showValue(this.value);" />
-      <span id="range">2016</span>
+      <input id="slider1" type="range" min="1965" max="2016" value="1965" step="1" class="slider" onchange="showValue(this.value);" />
+      <span id="range">1965</span>
     </div>
+  </div>
+  <div class="row" style="width: 100%;">
+        <button id = "button1"  class="button" onclick="runslider()">Click Me!</button>  
   </div>
   <div class="row" style="width: 100%;">
     <div class="col-sm-12">
         <div id="container1"></div>
     </div>
   </div>
+    <div class="row" style="width: 100%;">
+        <img style = "margin-left:10%" src="Legend.png">
+  </div>
+
   <div class="row" style="width: 100%;">
     <div id="houseChart" class="col-sm-6" style="width: 50%;">
     </div>
@@ -70,7 +78,7 @@
         //radius scale and color scale
         var rScale = d3.scale.linear()
             .domain([5, 9])
-            .range([2, 40]);
+            .range([2, 35]);
 
         //get year of 1965, store index to yearIndex
         var yearIndex = new Array();
@@ -165,7 +173,8 @@
             scope: 'world',
             geographyConfig: {
                 popupOnHover: false,
-                highlightOnHover: false
+                highlightOnHover: false,
+                borderColor:'#a3a3a3', 
             },
             fills: {
                 'C1':'#C8DDFB',
@@ -174,7 +183,7 @@
                 'C4':'#2843DC',
                 'C5':'#132FB0',
                 'C6':'#0011A3',
-                defaultFill: '#e3e5e0'
+                defaultFill: '#6b6b6b'
             },
             bubblesConfig: {
                 highlightOnHover: true,
@@ -373,6 +382,48 @@
     {   //d3.selectAll("svg.datamap").remove()
         document.getElementById("range").innerHTML=newValue;
         queue().defer(d3.csv, 'database.csv').await(ready);
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function runslider() {
+        var buttonText = document.getElementById("button1").innerHTML;
+        var checkbutton = 2;
+        //console.log("in runslider function");
+        if (buttonText == "Click Me!") {
+            //console.log("clicked");
+            checkbutton = 0;
+            document.getElementById("button1").innerHTML = "Stop!";
+            var currentyear = document.getElementById("slider1").value;
+            for(var i = currentyear; i < 2017; i++) {
+                if(document.getElementById("button1").innerHTML == "Click Me!") {
+                    //console.log("in break if");
+                    break;
+                }
+                showValue(i);
+                document.getElementById("slider1").value = i;
+                await sleep(200);            
+            }
+            currentyear = document.getElementById("slider1").value;
+            if(currentyear == 2016) {               
+                document.getElementById("slider1").value = 1965;
+                showValue(1965);
+                document.getElementById("button1").innerHTML = "Click Me!";
+
+            }
+
+        } else if(buttonText == "Stop!") {
+            checkbutton = 1;
+            //console.log("stoped");
+            var currentyear = document.getElementById("slider1").value;
+            document.getElementById("slider1").value = currentyear;
+            showValue(currentyear);
+            document.getElementById("button1").innerHTML = "Click Me!";
+                    
+        }
+
     }
     
     
