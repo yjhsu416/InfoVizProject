@@ -1,9 +1,36 @@
+body {
+    background-color: #2b2b2b;
+    vertical-align: middle;
+    font-family: open sans;
+}
+div {
+   word-wrap: break-word;
+   /*width: 700px;*/
+   font-family: open sans;
+}
+h1 {
+    color: #ffffff;
+    text-align: center;
+    font-family: open sans;
+}
+h2 {
+    color: #ffffff;
+    text-align: center;
+    font-family: open sans;
+}
+h3 {
+    color: #ffffff;
+    text-align: center;
+    font-family: open sans;
+}
 /* Style the tab */
 div.tab {
     /*margin-left: 30%;*/
+    color: #ffffff;
+    font-family: open sans;
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #2b2b2b;
 }
 
 /* Style the buttons inside the tab */
@@ -13,14 +40,14 @@ div.tab button {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 20px 25px;
     transition: 0.3s;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #ddd;
+    background-color: #494848;
 }
 
 /* Create an active/current tablink class */
@@ -34,4 +61,6 @@ div.tab button.active {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+    color: #ffffff;
+    font-family: open sans;
 }
