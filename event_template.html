@@ -36,7 +36,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9" style="width: 75%">
-				<h3 >Explore three of the most severe earthquakes.</h3>
+				<h3 id="titleEvnet">Here are earthquakes that happens in last year. (2016)</h3>
 				<!-- Replace the img tag to div or any other kind of tags -->
                 <div class="row" style="width: 100%;">
                     <div class="col-sm-12">
@@ -257,6 +257,7 @@
 
     setTimeout(function() {
         special();
+        document.getElementById("titleEvnet").innerHTML = "Now, let read some storeis of three of the most severe earthquakes recently. Hover on the bubbles to read.";
         d3.selectAll(".datamap").remove();
      //your code to be executed after 1 second
         queue()
