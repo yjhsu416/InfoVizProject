@@ -12,6 +12,7 @@
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="datamaps.world.min.js"></script>
     <script type="text/javascript" src="./js/canvasjs.min.js"></script>
+    <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/maploop.css"> 
     <style>
         #container1 { border:0px ; width: 800px; height: 400px;margin:0 auto; }
@@ -102,22 +103,22 @@
             var fillOpacityValue;
             if (depthValue < 20) {;
                 colorfillKey = 'C6';
-                fillOpacityValue = 0.8;
+                fillOpacityValue = 0.7;
             } else if (depthValue >= 20 && depthValue < 40) {
                 colorfillKey = 'C5';
-                fillOpacityValue = 0.7;
+                fillOpacityValue = 0.6;
             } else if (depthValue >= 40 && depthValue < 60) {         
                 colorfillKey = 'C4';
                 fillOpacityValue = 0.6;
             } else if (depthValue >= 60 && depthValue < 100) {
                 colorfillKey = 'C3';
-                fillOpacityValue = 0.5;
+                fillOpacityValue = 0.6;
             } else if (depthValue >= 100 && depthValue < 200) {
                 colorfillKey = 'C2';
-                fillOpacityValue = 0.5;
+                fillOpacityValue = 0.6;
             } else{
                 colorfillKey = 'C1';
-                fillOpacityValue = 0.5;
+                fillOpacityValue = 0.6;
             }
 
             bombsnew.push({
@@ -164,12 +165,12 @@
                 borderColor:'#a3a3a3', 
             },
             fills: {
-                'C1':'#C8DDFB',
-                'C2':'#6496D9',
-                'C3':'#2B58AD',
-                'C4':'#2843DC',
-                'C5':'#132FB0',
-                'C6':'#0011A3',
+                'C6':'#6ba7ff',
+                'C5':'#4994ff',
+                'C4':'#2B58AD',
+                'C3':'#2843DC',
+                'C2':'#132FB0',
+                'C1':'#0011A3',
                 defaultFill: '#6b6b6b'
             },
             bubblesConfig: {
