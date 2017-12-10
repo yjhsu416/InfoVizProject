@@ -29,6 +29,13 @@ p {
     font-family: open sans;
         font-size: 14px;
 }
+p.normal {
+    font-weight: normal;
+}
+
+p.thick {
+    font-weight: bold;
+}
 /* Style the tab */
 div.tab {
     /*margin-left: 30%;*/
