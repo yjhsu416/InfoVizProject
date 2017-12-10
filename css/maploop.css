@@ -5,6 +5,10 @@ body {
     font-family: verdana;
 }
 
+p {
+    color:#ffffff;
+}
+
 /* Style the tab */
 div.tab {
     /*margin-left: 30%;*/
