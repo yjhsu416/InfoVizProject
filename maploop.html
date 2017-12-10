@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="row" style="width: 100%;">
-                    <button id = "button1" style = "margin-left:5%" class="button" onclick="runslider()">Click Me!</button>  
+                    <button id = "button1" style = "margin-left:5%" class="button" onclick="runslider()">Start!</button>  
                 </div>
                 <div class="row" style="width: 100%;">
                     <div class="col-sm-12">
@@ -53,8 +53,9 @@
             </div>
             <div class="col-sm-3" style="width: 25%"> 
                 <h3>Side Contents</h3>
-                <!-- Replace the img tag to div or any other kind of tags -->
-                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                <p> Bubbles on the map a earthquake happening in that location. The size and color of bubbles represent the magnitude and depth of the earthquake.
+                <br>Click the <i>Start!</i> button to see earthquakes from 1965 to 2016. 
+                <br>You can also hover on the bubbles to see more information about that earthquake.</p>
             </div>
         </div>
     </div><br>
@@ -203,35 +204,35 @@
         var buttonText = document.getElementById("button1").innerHTML;
         var checkbutton = 2;
         //console.log("in runslider function");
-        if (buttonText == "Click Me!") {
+        if (buttonText == "Start!") {
             //console.log("clicked");
             checkbutton = 0;
-            document.getElementById("button1").innerHTML = "Stop!";
+            document.getElementById("button1").innerHTML = "Freeze!";
             var currentyear = document.getElementById("slider1").value;
             for(var i = currentyear; i < 2017; i++) {
-                if(document.getElementById("button1").innerHTML == "Click Me!") {
+                if(document.getElementById("button1").innerHTML == "Start!") {
                     //console.log("in break if");
                     break;
                 }
                 showValue(i);
                 document.getElementById("slider1").value = i;
-                await sleep(200);            
+                await sleep(400);            
             }
             currentyear = document.getElementById("slider1").value;
             if(currentyear == 2016) {               
                 document.getElementById("slider1").value = 1965;
                 showValue(1965);
-                document.getElementById("button1").innerHTML = "Click Me!";
+                document.getElementById("button1").innerHTML = "Start!";
 
             }
 
-        } else if(buttonText == "Stop!") {
+        } else if(buttonText == "Freeze!") {
             checkbutton = 1;
             //console.log("stoped");
             var currentyear = document.getElementById("slider1").value;
             document.getElementById("slider1").value = currentyear;
             showValue(currentyear);
-            document.getElementById("button1").innerHTML = "Click Me!";
+            document.getElementById("button1").innerHTML = "Start!";
                     
         }
 
