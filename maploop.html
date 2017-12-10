@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>InfoViz Earthquake Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="datamaps.world.min.js"></script>
+    <script type="text/javascript" src="./js/canvasjs.min.js"></script>
+    <link rel="stylesheet" href="./css/maploop.css"> 
+    <style>
+        #container1 { border:0px ; width: 800px; height: 400px;margin:0 auto; }
+    </style>
+</head>
+<body>
+    <h1 class="text-center">SI 649: Info Visualization Group Project</h1></br>
+    <div class="tab">
+        <button class="tablinks" >Overview</button>
+        <button class="tablinks" >Plate Map</button>
+        <button class="tablinks" >Depth 101</button>
+        <button class="tablinks" >Magnitude</button>
+        <button class="tablinks" >Magnitude Simulator</button>
+        <button class="tablinks" >Events</button>
+    </div>
+    </br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9" style="width: 75%">
+                <h3>Main Contents</h3>
+                <!-- Replace the img tag to div or any other kind of tags -->
+                <div class="row" style="width: 100%;">
+                    <div id="slidecontainer">
+                        <input id="slider1" type="range" min="1965" max="2016" value="1965" step="1" class="slider" onchange="showValue(this.value);" />
+                        <span id="range">1965</span>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%;">
+                    <button id = "button1" style = "margin-left:5%" class="button" onclick="runslider()">Click Me!</button>  
+                </div>
+                <div class="row" style="width: 100%;">
+                    <div class="col-sm-12">
+                        <div id="container1"></div>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%;">
+                    <img style = "margin-left:5%" src="Legend.png">
+                    </div>
+            </div>
+            <div class="col-sm-3" style="width: 25%"> 
+                <h3>Side Contents</h3>
+                <!-- Replace the img tag to div or any other kind of tags -->
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+        </div>
+    </div><br>
+
+
+<script>
+    queue()
+        .defer(d3.csv, "database.csv")
+        .await(ready);
+    var check = 1; //check if the map has already been created. 
+    var bombMap;
+
+    function ready(error, data) {
+        var eqdata = data;
+        var yearPlot = document.getElementById("range").innerHTML;
+        // console.log(yearPlot); //get this value from slider
+
+        //radius scale and color scale
+        var rScale = d3.scale.linear()
+            .domain([5, 9])
+            .range([2, 35]);
+
+        //get year of 1965, store index to yearIndex
+        var yearIndex = new Array();
+        for(var idx in eqdata) {
+            var year = "";
+            for(i = 6; i < 10; i++) {
+                year = year+eqdata[idx].Date[i];
+            }
+            if(year == yearPlot) {
+                //console.log(year);
+                yearIndex.push(idx);
+            }
+        }
+
+        //create bomb data
+        var bombsnew = [];
+        var len = yearIndex.length;
+        for(var i = 0; i < len; i++) {
+            var dateValue=eqdata[yearIndex[i]].Date;
+            var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
+            var depthValue = parseFloat(eqdata[yearIndex[i]].Depth);
+            var colorfillKey;
+            var fillOpacityValue;
+            if (depthValue < 20) {;
+                colorfillKey = 'C6';
+                fillOpacityValue = 0.8;
+            } else if (depthValue >= 20 && depthValue < 40) {
+                colorfillKey = 'C5';
+                fillOpacityValue = 0.7;
+            } else if (depthValue >= 40 && depthValue < 60) {         
+                colorfillKey = 'C4';
+                fillOpacityValue = 0.6;
+            } else if (depthValue >= 60 && depthValue < 100) {
+                colorfillKey = 'C3';
+                fillOpacityValue = 0.5;
+            } else if (depthValue >= 100 && depthValue < 200) {
+                colorfillKey = 'C2';
+                fillOpacityValue = 0.5;
+            } else{
+                colorfillKey = 'C1';
+                fillOpacityValue = 0.5;
+            }
+
+            bombsnew.push({
+                name: date+yearPlot + "," +eqdata[yearIndex[i]].Time,
+                magnitude: parseFloat(eqdata[yearIndex[i]].Magnitude),
+                depth: parseFloat(eqdata[yearIndex[i]].Depth),
+                radius: rScale(parseFloat(eqdata[yearIndex[i]].Magnitude)),
+                fillKey: colorfillKey,
+                fillOpacity: fillOpacityValue,
+                latitude: parseFloat(eqdata[yearIndex[i]].Latitude),
+                longitude: parseFloat(eqdata[yearIndex[i]].Longitude),
+                borderWidth: 0,
+                borderColor: '#FFFFFF'
+            })
+             // console.log(eqdata[i].Magnitude)
+        }
+
+        //render map only once.
+        if(check == 1){
+            bombMap = plotMap();
+            check = 0;
+        }
+        
+        
+        //draw bubbles for bombs
+        bombMap.bubbles(bombsnew, {
+
+            popupTemplate: function (geo, data) {           
+                return ['<div class="hoverinfo">' +  data.name,
+                '<br/>Magnitude: ' +  data.magnitude + '',
+                '<br/>Depth: ' +  data.depth + '',
+                '</div>'].join('');
+            }
+
+        });
+
+        function plotMap() {
+            var Map = new Datamap({
+            element: document.getElementById('container1'),
+            scope: 'world',
+            geographyConfig: {
+                popupOnHover: false,
+                highlightOnHover: false,
+                borderColor:'#a3a3a3', 
+            },
+            fills: {
+                'C1':'#C8DDFB',
+                'C2':'#6496D9',
+                'C3':'#2B58AD',
+                'C4':'#2843DC',
+                'C5':'#132FB0',
+                'C6':'#0011A3',
+                defaultFill: '#6b6b6b'
+            },
+            bubblesConfig: {
+                highlightOnHover: true,
+                highlightFillColor: '#FC8D59',
+                highlightBorderColor: 'rgba(250, 15, 160, 0.2)',
+                highlightBorderWidth: 2,
+                highlightBorderOpacity: 1,
+                highlightFillOpacity: 0.85,
+            },
+            data: {
+                // 'RUS': {fillKey: 'RUS'},
+                // 'USA': {fillKey: 'USA'}
+            }
+            });
+            return Map;
+        }
+    }
+       
+    
+    function showValue(newValue)
+    {   //d3.selectAll("svg.datamap").remove()
+        document.getElementById("range").innerHTML=newValue;
+        queue().defer(d3.csv, 'database.csv').await(ready);
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function runslider() {
+        var buttonText = document.getElementById("button1").innerHTML;
+        var checkbutton = 2;
+        //console.log("in runslider function");
+        if (buttonText == "Click Me!") {
+            //console.log("clicked");
+            checkbutton = 0;
+            document.getElementById("button1").innerHTML = "Stop!";
+            var currentyear = document.getElementById("slider1").value;
+            for(var i = currentyear; i < 2017; i++) {
+                if(document.getElementById("button1").innerHTML == "Click Me!") {
+                    //console.log("in break if");
+                    break;
+                }
+                showValue(i);
+                document.getElementById("slider1").value = i;
+                await sleep(200);            
+            }
+            currentyear = document.getElementById("slider1").value;
+            if(currentyear == 2016) {               
+                document.getElementById("slider1").value = 1965;
+                showValue(1965);
+                document.getElementById("button1").innerHTML = "Click Me!";
+
+            }
+
+        } else if(buttonText == "Stop!") {
+            checkbutton = 1;
+            //console.log("stoped");
+            var currentyear = document.getElementById("slider1").value;
+            document.getElementById("slider1").value = currentyear;
+            showValue(currentyear);
+            document.getElementById("button1").innerHTML = "Click Me!";
+                    
+        }
+
+    }
+    
+    
+
+    
+    
+</script>
+</div>
+
+
+</body>
+</html>
