@@ -8,15 +8,20 @@
         #container1 { border:0px dotted blue; width: 1000px; height: 500px; margin:0 auto; }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <!-- <link rel="stylesheet" type="text/css" href="bigearthquake.css"> -->
+    <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
-    <script src="datamaps.world.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
+        <script src="datamaps.world.min.js"></script>
+    <script src="datamaps2.world.min.js"></script>
+
+
     
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
 
 
     
@@ -52,6 +57,7 @@
     // var datanumber = "\"17083\"";
 
     function ready(error, data) {
+        special();
         var eqdata = data;
         // var yearPlot = "02/27/2010";
         //radius scale and color scale
@@ -127,12 +133,7 @@
                 // Use dummy data now
                 var dataPoints = "";
                 createChart(dataPoints);
-                    
-                // var magnitude = data.magnitude;
-                // drawEarthquake(magnitude);
-                
-// //                 var depth = data.depth
-//                 drawDepth(data); //still working on here
+
                 
                 return ['<div class="hoverinfo">' +  data.name,
                 '<br/>Magnitude: ' +  data.magnitude + '',
@@ -174,10 +175,6 @@
             });
             return Map;
         }
-
-
-        
-
     }
     
 

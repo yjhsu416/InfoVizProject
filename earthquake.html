@@ -153,6 +153,7 @@ shake level 6:8-8.7*/
       height = 1200,
       className = "";
 
+
   var svg = d3.select("body").append("svg")
       .attr("width", 1200)
       .attr("height", 800);
@@ -160,6 +161,9 @@ shake level 6:8-8.7*/
   var g = svg.append("g");
   level(magnitude);
   // console.log(className);
+
+
+      
 
   var x1 = 60;
   var x2 = 430;
@@ -277,11 +281,13 @@ shake level 6:8-8.7*/
           .attr("width", "280")
           .attr("height", "280");
 
-  var text = g.append("text")
-          .text('Magnitude: 9.0')
-          .style('fill', "white")
-          .attr("x", text6_x)
-          .attr("y", text6_y)
+  // var text = g.append("text")
+  //         .text('Magnitude: 9.0')
+  //         .style('fill', "white")
+  //         .attr("x", text6_x)
+  //         .attr("y", text6_y)
+
+
 
 //End - for show level 1 - 6, can delete in final code//
 
