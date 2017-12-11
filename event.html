@@ -46,63 +46,26 @@
 			</div>
 			<div class="col-sm-3" id="earthquakeInfo" style="width: 25%"> 
                 <h3 id= "t1">
-                    <!-- Japan, March 11, 2011 -->
                 </h3>
                 </br>
                 <p class="thick" id="m1" ></p>
-                <!-- <img id = "i1" src="img/japan.jpg" class="img-responsive" style="width:100%" alt="Image"> -->
+               
                 <p id="p1" >
-  <!--                   March 11, 2011 - At 2:46 p.m., a 9.1 magnitude earthquake takes place 231 miles northeast of Tokyo at a depth of 15.2 miles.
-                    The earthquake causes a tsunami with 30-foot waves that damage several nuclear reactors in the area.
-                    It is the largest earthquake ever to hit Japan. -->
                     </br>
                 </p>
                 <p class="thick" id="p2" >
-<!--                     Number of people killed and missing: -->
                 </p>
                 <p id="p3" >
-    <!--                 (Source: Japan's Fire and Disaster Management Agency)
-                    The combined total of confirmed deaths and missing is more than 22,000 (nearly 20,000 deaths and 2,500 missing). Deaths were caused by the initial earthquake and tsunami and by post-disaster health conditions. -->
+
                     </br>
                 </p>
                 <p class="thick" id="p4" >
                    <!--  Other Facts: -->
                 </p>
                 <p id="p5" >
-                    
-             <!--        At the time of the earthquake, Japan had 54 nuclear reactors, with two under construction, and 17 power plants, that produced about 30% of Japan's electricity (IAEA 2011).
-                    Material damage from the earthquake and tsunami is estimated at about 25 trillion yen ($300 billion).
-                    There are six reactors at Tokyo Electric Power Company's Fukushima Daiichi plant, located about 65 km (40 miles) south of Sendai.
-                    A microsievert (mSv) is an internationally recognized unit measuring radiation dosage. People are typically exposed to a total of about 1,000 microsieverts in one year.
-                    The Japanese government estimated that the tsunami swept about five million tons of debris offshore, but that 70% sank, leaving 1.5 million tons floating in the Pacific Ocean. The debris was not considered to be radioactive. -->
+            
                 </p>
-				<!-- <h3>Japan, March 11, 2011</h3>
-				<img src="img/japan.jpg" class="img-responsive" style="width:100%" alt="Image">
-				<p>
-					March 11, 2011 - At 2:46 p.m., a 9.1 magnitude earthquake takes place 231 miles northeast of Tokyo at a depth of 15.2 miles.
-					The earthquake causes a tsunami with 30-foot waves that damage several nuclear reactors in the area.
-					It is the largest earthquake ever to hit Japan.
-					</br>
-				</p>
-				<p class="thick">
-					Number of people killed and missing:
-				</p>
-				<p>
-					(Source: Japan's Fire and Disaster Management Agency)
-					The combined total of confirmed deaths and missing is more than 22,000 (nearly 20,000 deaths and 2,500 missing). Deaths were caused by the initial earthquake and tsunami and by post-disaster health conditions.
-					</br>
-				</p>
-				<p class="thick">
-					Other Facts:
-				</p>
-				<p>
-					
-					At the time of the earthquake, Japan had 54 nuclear reactors, with two under construction, and 17 power plants, that produced about 30% of Japan's electricity (IAEA 2011).
-					Material damage from the earthquake and tsunami is estimated at about 25 trillion yen ($300 billion).
-					There are six reactors at Tokyo Electric Power Company's Fukushima Daiichi plant, located about 65 km (40 miles) south of Sendai.
-					A microsievert (mSv) is an internationally recognized unit measuring radiation dosage. People are typically exposed to a total of about 1,000 microsieverts in one year.
-					The Japanese government estimated that the tsunami swept about five million tons of debris offshore, but that 70% sank, leaving 1.5 million tons floating in the Pacific Ocean. The debris was not considered to be radioactive.
-				</p> -->
+
 			</div>
 		</div>
 	</div><br>
@@ -146,24 +109,24 @@
             var depthValue = parseFloat(eqdata[yearIndex[i]].Depth);
             var colorfillKey;
             var fillOpacityValue;
-            if (depthValue < 20) {;
+            if (depthValue < 10) {;
                 colorfillKey = 'C6';
-                fillOpacityValue = 0.8;
-            } else if (depthValue >= 20 && depthValue < 40) {
-                colorfillKey = 'C5';
                 fillOpacityValue = 0.7;
-            } else if (depthValue >= 40 && depthValue < 60) {         
+            } else if (depthValue >= 10 && depthValue < 20) {
+                colorfillKey = 'C5';
+                fillOpacityValue = 0.6;
+            } else if (depthValue >= 20 && depthValue < 40) {         
                 colorfillKey = 'C4';
                 fillOpacityValue = 0.6;
-            } else if (depthValue >= 60 && depthValue < 100) {
+            } else if (depthValue >= 40 && depthValue < 70) {
                 colorfillKey = 'C3';
-                fillOpacityValue = 0.5;
-            } else if (depthValue >= 100 && depthValue < 200) {
+                fillOpacityValue = 0.6;
+            } else if (depthValue >= 70 && depthValue < 300) {
                 colorfillKey = 'C2';
-                fillOpacityValue = 0.5;
+                fillOpacityValue = 0.6;
             } else{
                 colorfillKey = 'C1';
-                fillOpacityValue = 0.5;
+                fillOpacityValue = 0.6;
             }
 
             bombsnew.push({
@@ -215,7 +178,8 @@
             scope: 'world',
             geographyConfig: {
                 popupOnHover: false,
-                highlightOnHover: false
+                highlightOnHover: false,
+                borderColor: '#242426',
             },
             fills: {
                 'C6':'#6ba7ff',
@@ -224,7 +188,7 @@
                 'C3':'#2843DC',
                 'C2':'#132FB0',
                 'C1':'#0011A3',
-                defaultFill: '#6b6b6b'
+                defaultFill: '#393B44'
             },
             bubblesConfig: {
                 highlightOnHover: true,
@@ -295,24 +259,24 @@
                 var depthValue = parseFloat(eqdata[yearIndex[i]].Depth);
                 var colorfillKey;
                 var fillOpacityValue;
-                if (depthValue < 20) {;
+                if (depthValue < 10) {;
                     colorfillKey = 'C6';
-                    fillOpacityValue = 1;
-                } else if (depthValue >= 20 && depthValue < 40) {
+                    fillOpacityValue = 0.8;
+                } else if (depthValue >= 10 && depthValue < 20) {
                     colorfillKey = 'C5';
-                    fillOpacityValue = 1;
-                } else if (depthValue >= 40 && depthValue < 60) {         
+                    fillOpacityValue = 0.8;
+                } else if (depthValue >= 20 && depthValue < 40) {         
                     colorfillKey = 'C4';
-                    fillOpacityValue = 0;
-                } else if (depthValue >= 60 && depthValue < 100) {
+                    fillOpacityValue = 0.8;
+                } else if (depthValue >= 40 && depthValue < 70) {
                     colorfillKey = 'C3';
-                    fillOpacityValue = 0;
-                } else if (depthValue >= 100 && depthValue < 200) {
+                    fillOpacityValue = 0.8;
+                } else if (depthValue >= 70 && depthValue < 300) {
                     colorfillKey = 'C2';
-                    fillOpacityValue = 0;
+                    fillOpacityValue = 0.8;
                 } else{
                     colorfillKey = 'C1';
-                    fillOpacityValue = 0;
+                    fillOpacityValue = 0.8;
                 }
 
                 bombsnew.push({
@@ -425,7 +389,8 @@
                 scope: 'world',
                 geographyConfig: {
                     popupOnHover: false,
-                    highlightOnHover: false
+                    highlightOnHover: false,
+                    borderColor: '#242426',
                 },
                 fills: {
                 'C6':'#6ba7ff',
@@ -434,7 +399,7 @@
                 'C3':'#2843DC',
                 'C2':'#132FB0',
                 'C1':'#0011A3',
-                defaultFill: '#6b6b6b'
+                defaultFill: '#393B44'
                 },
                 bubblesConfig: {
                     highlightOnHover: true,
