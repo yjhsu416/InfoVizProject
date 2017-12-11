@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="row" style="width: 100%;">
-                    <img style = "margin-left:5%" src="Legend.png">
+                    <img style = "margin-left:3%" src="Legend.png">
                     </div>
             </div>
             <div class="col-sm-3" style="width: 25%"> 
@@ -64,13 +64,14 @@
 
 <script>
     queue()
-        .defer(d3.csv, "database.csv")
+        .defer(d3.csv, "./data/database.csv")
         .await(ready);
     var check = 1; //check if the map has already been created. 
     var bombMap;
 
     function ready(error, data) {
         var eqdata = data;
+        //console.log(data);
         var yearPlot = document.getElementById("range").innerHTML;
         // console.log(yearPlot); //get this value from slider
 
@@ -85,6 +86,7 @@
             var year = "";
             for(i = 6; i < 10; i++) {
                 year = year+eqdata[idx].Date[i];
+                //console.log(year);
             }
             if(year == yearPlot) {
                 //console.log(year);
@@ -92,25 +94,27 @@
             }
         }
 
+
         //create bomb data
         var bombsnew = [];
         var len = yearIndex.length;
+        //console.log(len);
         for(var i = 0; i < len; i++) {
             var dateValue=eqdata[yearIndex[i]].Date;
             var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
             var depthValue = parseFloat(eqdata[yearIndex[i]].Depth);
             var colorfillKey;
             var fillOpacityValue;
-            if (depthValue < 20) {;
+            if (depthValue < 10) {;
                 colorfillKey = 'C6';
                 fillOpacityValue = 0.7;
-            } else if (depthValue >= 20 && depthValue < 40) {
+            } else if (depthValue >= 10 && depthValue < 20) {
                 colorfillKey = 'C5';
                 fillOpacityValue = 0.6;
-            } else if (depthValue >= 40 && depthValue < 60) {         
+            } else if (depthValue >= 20 && depthValue < 50) {         
                 colorfillKey = 'C4';
                 fillOpacityValue = 0.6;
-            } else if (depthValue >= 60 && depthValue < 100) {
+            } else if (depthValue >= 50 && depthValue < 100) {
                 colorfillKey = 'C3';
                 fillOpacityValue = 0.6;
             } else if (depthValue >= 100 && depthValue < 200) {
@@ -120,6 +124,7 @@
                 colorfillKey = 'C1';
                 fillOpacityValue = 0.6;
             }
+
 
             bombsnew.push({
                 name: date+yearPlot + "," +eqdata[yearIndex[i]].Time,
@@ -133,7 +138,7 @@
                 borderWidth: 0,
                 borderColor: '#FFFFFF'
             })
-             // console.log(eqdata[i].Magnitude)
+              
         }
 
         //render map only once.
@@ -162,7 +167,7 @@
             geographyConfig: {
                 popupOnHover: false,
                 highlightOnHover: false,
-                borderColor:'#a3a3a3', 
+                borderColor:'#494949', 
             },
             fills: {
                 'C6':'#6ba7ff',
