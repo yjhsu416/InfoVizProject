@@ -1,77 +1,77 @@
-<html>
-<HEAD>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>InfoViz Earthquake Template</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Earthquake</title>
-    <style>
-        #container1 { border:0px ; width: 1000px; height: 500px;margin:0 auto; }
-    </style>
-    <link rel="stylesheet" type='text/css' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="datamaps.world.min.js"></script>
     <script type="text/javascript" src="./js/canvasjs.min.js"></script>
-    <!--     <script src="earthquake.js"></script> -->
-    <link rel="stylesheet" href="./css/styles.css"> 
-    <link rel="stylesheet" type="text/css" href="earthquake.css">
-    <link rel="stylesheet" type="text/css" href="index.css">
-
-    
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<!--     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.min.js"></script> -->
-
-    
-</HEAD>
-
+    <link rel="stylesheet" href="./css/template.css">
+    <link rel="stylesheet" href="./css/maploop.css"> 
+    <style>
+        #container1 { border:0px ; width: 800px; height: 400px;margin:0 auto; }
+    </style>
+</head>
 <body>
-
-<h1>Group Project</h1>
-<p style="text-align:center;margin-bottom:40px">SI 649 Group 7</p>
-
-<div class="container">
-  <div class="row" style="width: 100%;">
-    <div id="slidecontainer">
-      <input id="slider1" type="range" min="1965" max="2016" value="1965" step="1" class="slider" onchange="showValue(this.value);" />
-      <span id="range">1965</span>
+    <h1 class="text-center">SI 649: Info Visualization Group Project</h1></br>
+    <div class="tab">
+        <button class="tablinks" >Overview</button>
+        <button class="tablinks" >Plate Map</button>
+        <button class="tablinks" >Depth 101</button>
+        <button class="tablinks" >Magnitude</button>
+        <button class="tablinks" >Magnitude Simulator</button>
+        <button class="tablinks" >Events</button>
     </div>
-  </div>
-  <div class="row" style="width: 100%;">
-        <button id = "button1"  class="button" onclick="runslider()">Click Me!</button>  
-  </div>
-  <div class="row" style="width: 100%;">
-    <div class="col-sm-12">
-        <div id="container1"></div>
-    </div>
-  </div>
-    <div class="row" style="width: 100%;">
-        <img style = "margin-left:10%" src="Legend.png">
-  </div>
-
-  <div class="row" style="width: 100%;">
-    <div id="houseChart" class="col-sm-6" style="width: 50%;">
-    </div>
-    <div id="depthChart" class="col-sm-6" style="width: 50%;">
-    </div></br>
-    <div class="row" style="width: 100%;">
-    <div class="col-sm-12">
-        <div id="chartContainer" style="height: 360px; width: 100%;"></div>
-    </div>
-  </div>
-</div>
+    </br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9" style="width: 75%">
+                <h3>Main Contents</h3>
+                <!-- Replace the img tag to div or any other kind of tags -->
+                <div class="row" style="width: 100%;">
+                    <div id="slidecontainer">
+                        <input id="slider1" type="range" min="1965" max="2016" value="1965" step="1" class="slider" onchange="showValue(this.value);" />
+                        <span id="range">1965</span>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%;">
+                    <button id = "button1" style = "margin-left:5%" class="button" onclick="runslider()">Start!</button>  
+                </div>
+                <div class="row" style="width: 100%;">
+                    <div class="col-sm-12">
+                        <div id="container1"></div>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%;">
+                    <img style = "margin-left:3%" src="Legend.png">
+                    </div>
+            </div>
+            <div class="col-sm-3" style="width: 25%"> 
+                <h3>Side Contents</h3>
+                <p> Bubbles on the map indicate earthquakes happening in that location. The size and color of bubbles represent the magnitude and depth of the earthquake.
+                <br>Click the <i>Start!</i> button to see earthquakes from 1965 to 2016. 
+                <br>You can also hover on a bubble to see more information about that earthquake.</p>
+            </div>
+        </div>
+    </div><br>
 
 
 <script>
     queue()
-        .defer(d3.csv, "database.csv")
+        .defer(d3.csv, "./data/database.csv")
         .await(ready);
     var check = 1; //check if the map has already been created. 
     var bombMap;
 
     function ready(error, data) {
         var eqdata = data;
+        //console.log(data);
         var yearPlot = document.getElementById("range").innerHTML;
         // console.log(yearPlot); //get this value from slider
 
@@ -86,6 +86,7 @@
             var year = "";
             for(i = 6; i < 10; i++) {
                 year = year+eqdata[idx].Date[i];
+                //console.log(year);
             }
             if(year == yearPlot) {
                 //console.log(year);
@@ -93,34 +94,37 @@
             }
         }
 
+
         //create bomb data
         var bombsnew = [];
         var len = yearIndex.length;
+        //console.log(len);
         for(var i = 0; i < len; i++) {
             var dateValue=eqdata[yearIndex[i]].Date;
             var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
             var depthValue = parseFloat(eqdata[yearIndex[i]].Depth);
             var colorfillKey;
             var fillOpacityValue;
-            if (depthValue < 20) {;
+            if (depthValue < 10) {;
                 colorfillKey = 'C6';
-                fillOpacityValue = 0.8;
-            } else if (depthValue >= 20 && depthValue < 40) {
-                colorfillKey = 'C5';
                 fillOpacityValue = 0.7;
-            } else if (depthValue >= 40 && depthValue < 60) {         
+            } else if (depthValue >= 10 && depthValue < 20) {
+                colorfillKey = 'C5';
+                fillOpacityValue = 0.6;
+            } else if (depthValue >= 20 && depthValue < 40) {         
                 colorfillKey = 'C4';
                 fillOpacityValue = 0.6;
-            } else if (depthValue >= 60 && depthValue < 100) {
+            } else if (depthValue >= 40 && depthValue < 70) {
                 colorfillKey = 'C3';
-                fillOpacityValue = 0.5;
-            } else if (depthValue >= 100 && depthValue < 200) {
+                fillOpacityValue = 0.6;
+            } else if (depthValue >= 70 && depthValue < 300) {
                 colorfillKey = 'C2';
-                fillOpacityValue = 0.5;
+                fillOpacityValue = 0.6;
             } else{
                 colorfillKey = 'C1';
-                fillOpacityValue = 0.5;
+                fillOpacityValue = 0.6;
             }
+
 
             bombsnew.push({
                 name: date+yearPlot + "," +eqdata[yearIndex[i]].Time,
@@ -134,7 +138,7 @@
                 borderWidth: 0,
                 borderColor: '#FFFFFF'
             })
-             // console.log(eqdata[i].Magnitude)
+              
         }
 
         //render map only once.
@@ -147,18 +151,7 @@
         //draw bubbles for bombs
         bombMap.bubbles(bombsnew, {
 
-            popupTemplate: function (geo, data) {
-                // Draw histogram 
-                // Use dummy data now
-                var dataPoints = "";
-                createChart(dataPoints);
-                    
-                var magnitude = data.magnitude;
-                drawEarthquake(magnitude);
-                
-//                 var depth = data.depth
-                drawDepth(data); //still working on here
-                
+            popupTemplate: function (geo, data) {           
                 return ['<div class="hoverinfo">' +  data.name,
                 '<br/>Magnitude: ' +  data.magnitude + '',
                 '<br/>Depth: ' +  data.depth + '',
@@ -174,15 +167,15 @@
             geographyConfig: {
                 popupOnHover: false,
                 highlightOnHover: false,
-                borderColor:'#a3a3a3', 
+                borderColor:'#494949', 
             },
             fills: {
-                'C1':'#C8DDFB',
-                'C2':'#6496D9',
-                'C3':'#2B58AD',
-                'C4':'#2843DC',
-                'C5':'#132FB0',
-                'C6':'#0011A3',
+                'C6':'#6ba7ff',
+                'C5':'#4994ff',
+                'C4':'#2B58AD',
+                'C3':'#2843DC',
+                'C2':'#132FB0',
+                'C1':'#0011A3',
                 defaultFill: '#6b6b6b'
             },
             bubblesConfig: {
@@ -200,183 +193,8 @@
             });
             return Map;
         }
-
-        function drawEarthquake(magnitude){
-             //place holder : will put into data.magnitude 
-            var magnitude = magnitude;
-            //
-            d3.selectAll(".house").remove();
-            var width = 500,
-//                 height = 1200,
-                height = 500,
-                className = "level0";
-            // levelEarthquake(magnitude);
-            // console.log(className);
-
-            var houseDIV = d3.selectAll("#houseChart")
-                        .append("div")
-                        .attr("class", "house")
-                        .style("width", "100%");
-            
-            var svg = houseDIV.append("svg")
-                  .attr("class", "house")
-                  .attr("width", width)
-                  .attr("height", height);
-
-            var g = svg.append("g");
-            levelEarthquake(magnitude);
-            // console.log(className)            
-            var imgs = g.append("svg:image")
-                        .attr("xlink:href", "img/house01.png")
-                        .attr("class", className)
-                        .attr("x", "60")
-                        .attr("y", "60")
-                        .attr("width", "300")
-                        .attr("height", "300");
-            var text = g.append("text")
-                        .text('Magnitude:' + magnitude)
-                        .style('fill', "white")
-                        .attr("x", "80")
-                        .attr("y", "80")
-
-            function levelEarthquake(magnitude) {
-
-                if (magnitude < 6) {
-                    className = "level1";
-                    colorfillKey = 'C1';
-                } else if (magnitude >= 6 && magnitude < 6.5) {
-                    className = "level2";
-                    colorfillKey = 'C2';
-                } else if (magnitude >= 6.5 && magnitude < 7) {         
-                    className = "level3";
-                    colorfillKey = 'C3';
-                } else if (magnitude >= 7 && magnitude < 7.5) {
-                    className = "level4";
-                    colorfillKey = 'C4';
-                } else if (magnitude >= 7.5 && magnitude < 8) {
-                    className = "level5";
-                    colorfillKey = 'C5';
-                } else{
-                    className = "level6";
-                    colorfillKey = 'C6';
-                }
-                return className;
-            }
-        }
-        
-        function drawDepth(d) {
-            d3.selectAll(".depth").remove();
-            d3.selectAll(".depth-nodes").remove();
-            var depthDIV = d3.selectAll("#depthChart")
-                                .append('div')
-                                .attr("class","depth")
-                                .style("width", "100%");
-
-            var depthTitle = depthDIV.append('h3')
-                                     .text("Depth")
-                                     .attr('class', 'depth');
-//                                      .attr("font-family","Open Sans");
-
-            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            var svgWidth = 500;
-            var svgHeight = 500;
-            var baseRadius = 150;
-
-//             var circleRadii = [150, 100, 60];
-
-            var depthSVG = depthDIV.append('svg')// create an <svg> element'
-                                    .attr('class', 'depth')
-                                    .attr('width', svgWidth) // set its dimensions
-                                    .attr('height', svgHeight);
-            
-            //write months around the circle
-            var monthTitles = [];
-            for (i = 0; i < monthNames.length; i++){
-                monthTitles[i] = depthSVG.append('text')
-                                    .text(monthNames[i])
-                                    .attr('x', svgWidth/2 - 12 + (baseRadius + 20)*Math.cos(i*Math.PI/6 - Math.PI/2))
-                                    .attr('y', svgHeight/2 + 5 + (baseRadius + 20)*Math.sin(i*Math.PI/6 - Math.PI/2))
-//                                     .attr("font-family","Open Sans")
-                                    .attr("font-size","12pt")
-                                    .attr("fill", "white");
-            }
-            
-//             var circles = depthSVG.selectAll('circle')
-//                                   .data(circleRadii)
-//                                   .enter()
-//                                   .append('circle');
-                                        
-            var depthBase = depthSVG.append('circle')
-                            .attr("class","depth")
-                            .attr('cx', svgWidth/2)
-                            .attr('cy', svgHeight/2)
-                            .attr('r', baseRadius)
-                            .style('fill', "white");
-            
-            var depthCenter = depthSVG.append('circle')
-                            .attr("class","depth")
-                            .attr('cx', svgWidth/2)
-                            .attr('cy',svgHeight/2)
-                            .attr('r', 2)
-                            .style('fill', "black");
-            
-            var depthDeep = depthSVG.append('circle')
-                            .attr("class","depth")
-                            .attr('cx', svgWidth/2)
-                            .attr('cy',svgHeight/2)
-                            .attr('r', 20)
-                            .style('stroke', "black")
-                            .style('fill-opacity', 0);
-            
-            var depthMid = depthSVG.append('circle')
-                            .attr("class","depth")
-                            .attr('cx', svgWidth/2)
-                            .attr('cy',svgHeight/2)
-                            .attr('r', 60)
-                            .style('stroke', "black")
-                            .style('fill-opacity', 0);
-            
-            var depthShallow = depthSVG.append('circle')
-                            .attr("class","depth")
-                            .attr('cx', svgWidth/2)
-                            .attr('cy',svgHeight/2)
-                            .attr('r', 110)
-                            .style('stroke', "black")
-                            .style('fill-opacity', 0);
-            
-//             var monthList = [];
-//             var angleList = [];
-            
-            var depthHolder = depthSVG.selectAll('.depth-nodes')
-                                        .data(d)
-                                        .enter();
-                          
-            var t = new Date(d.name.split(",",1));
-//             monthList.push(t.getMonth()+1);
-            var angle = (t.getMonth()+1)*Math.PI/6 - 2*Math.PI/3; //Put January at 12o'clock
-            
-            var depthScale = d3.scale.linear()
-                                    .domain([0, 700])
-                                    .range([30,130]);
-            var magScale = d3.scale.linear()
-                                    .domain([5, 9.5])
-                                    .range([5, 20]);
-
-            var depthNode = depthSVG.append('circle')
-                            .attr("class","depth-nodes")
-                            .attr('cx', svgWidth/2 + (baseRadius-depthScale(d.depth))*Math.cos(angle))
-                            .attr('cy', svgHeight/2 + (baseRadius-depthScale(d.depth))*Math.sin(angle))
-                            .attr('r', magScale(d.magnitude))
-                            .style("fill", function(){
-                                var nColor;
-                                if (d.magnitude <= 6){nColor = "green";}
-                                else if (d.magnitude >= 8){nColor = "red";}
-                                else {nColor = "yellow";}
-                                return nColor;
-                            });   
-
     }
-    }
+       
     
     function showValue(newValue)
     {   //d3.selectAll("svg.datamap").remove()
@@ -392,35 +210,35 @@
         var buttonText = document.getElementById("button1").innerHTML;
         var checkbutton = 2;
         //console.log("in runslider function");
-        if (buttonText == "Click Me!") {
+        if (buttonText == "Start!") {
             //console.log("clicked");
             checkbutton = 0;
-            document.getElementById("button1").innerHTML = "Stop!";
+            document.getElementById("button1").innerHTML = "Freeze!";
             var currentyear = document.getElementById("slider1").value;
             for(var i = currentyear; i < 2017; i++) {
-                if(document.getElementById("button1").innerHTML == "Click Me!") {
+                if(document.getElementById("button1").innerHTML == "Start!") {
                     //console.log("in break if");
                     break;
                 }
                 showValue(i);
                 document.getElementById("slider1").value = i;
-                await sleep(200);            
+                await sleep(400);            
             }
             currentyear = document.getElementById("slider1").value;
             if(currentyear == 2016) {               
                 document.getElementById("slider1").value = 1965;
                 showValue(1965);
-                document.getElementById("button1").innerHTML = "Click Me!";
+                document.getElementById("button1").innerHTML = "Start!";
 
             }
 
-        } else if(buttonText == "Stop!") {
+        } else if(buttonText == "Freeze!") {
             checkbutton = 1;
             //console.log("stoped");
             var currentyear = document.getElementById("slider1").value;
             document.getElementById("slider1").value = currentyear;
             showValue(currentyear);
-            document.getElementById("button1").innerHTML = "Click Me!";
+            document.getElementById("button1").innerHTML = "Start!";
                     
         }
 
@@ -428,41 +246,11 @@
     
     
 
-    function createChart(newDataPoints){
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            exportEnabled: true,
-            theme: "dark1", // "light1", "light2", "dark1", "dark2"
-            title:{
-                text: "Historical Data"
-            },
-            data: [{
-                type: "column", //change type to bar, line, area, pie, etc
-                //indexLabel: "{y}", //Shows y value on all Data Points
-                indexLabelFontColor: "#5A5757",
-                indexLabelPlacement: "outside",
-                dataPoints: [
-                    { x: 1, y: 71 },
-                    { x: 2, y: 55 },
-                    { x: 3, y: 50 },
-                    { x: 4, y: 65 },
-                    { x: 5, y: 92, indexLabel: "Highest" },
-                    { x: 6, y: 68 },
-                    { x: 7, y: 38 },
-                    { x: 8, y: 71 },
-                    { x: 9, y: 54 },
-                    { x: 10, y: 60 },
-                    { x: 11, y: 36, indexLabel: "Lowest" },
-                    { x: 12, y: 49 }
-                ]
-            }]
-        });
-    chart.render();
-}
     
     
 </script>
 </div>
+
 
 </body>
 </html>
