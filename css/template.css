@@ -12,22 +12,25 @@ h1 {
     color: #ffffff;
     text-align: center;
     font-family: Share;
+    font-size: 44px;
 }
 h2 {
     color: #ffffff;
     text-align: center;
     font-family: Share;
+    font-size: 30px;
 }
 h3 {
     color: #ffffff;
     text-align: center;
     font-family: Share;
+    font-size: 28px;
 }
 p {
     color: #ffffff;
     /*text-align: center;*/
-    font-family: open sans;
-        font-size: 14px;
+    font-family: Share;
+    font-size: 14px;
 }
 a{
     color: #ffffff;
