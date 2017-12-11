@@ -105,13 +105,14 @@ span {
     background-color: #393B44; 
     border: none;
     color: white;
-    width: 140px;
+    width: 100px;
     height: 40px;
     line-height: 13px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-family: share;
+    font-size: 14px;
     outline: none;
     opacity: 0.7;
 }
@@ -120,13 +121,14 @@ span {
     background-color: #393B44; 
     border: none;
     color: white;
-    width: 140px;
+    width: 100px;
     height: 40px;
     line-height: 13px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-family: share;
+    font-size: 14px;
     outline: none;
     opacity: 0.9;
 }
@@ -138,12 +140,14 @@ span {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-family: share;
+    font-size: 14px;
     outline: none;
 }
 
 #range{
-    font-family: verdana;
+    font-family: share;
+    font-size: 14px;
     color: #ffffff;
 }
 
