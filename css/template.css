@@ -29,6 +29,13 @@ p {
     font-family: open sans;
         font-size: 14px;
 }
+a{
+    color: #ffffff;
+
+}
+a:hover{
+    color: #ffffff;
+}
 p.normal {
     font-weight: normal;
 }
