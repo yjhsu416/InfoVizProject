@@ -11,17 +11,17 @@ div {
 h1 {
     color: #ffffff;
     text-align: center;
-    font-family: open sans;
+    font-family: Share;
 }
 h2 {
     color: #ffffff;
     text-align: center;
-    font-family: open sans;
+    font-family: Share;
 }
 h3 {
     color: #ffffff;
     text-align: center;
-    font-family: open sans;
+    font-family: Share;
 }
 p {
     color: #ffffff;
@@ -72,10 +72,19 @@ div.tab button:hover {
     background-color: #494848;
 }
 
-/* Create an active/current tablink class */
-div.tab button.active {
-    background-color: #ccc;
+
+
+/*div.tab button:visited {
+  background-color: #ffffff;
+}*/
+
+
+/*div.tab button:focus {
+    background-color: #ffffff;
 }
+*/
+
+
 
 /* Style the tab content */
 .tabcontent {
@@ -85,4 +94,9 @@ div.tab button.active {
     border-top: none;
     color: #ffffff;
     font-family: open sans;
+}
+
+/* Create an active/current tablink class */
+div.tab button:active {
+    background-color: #ffffff;
 }
