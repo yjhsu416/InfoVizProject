@@ -20,3 +20,9 @@
  top: 28px;
  left: 0px;
 }
+
+.label-bar {
+  position: relative;
+  bottom: -440px;
+  margin-bottom: 30px;
+}
