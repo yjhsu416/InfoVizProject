@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
+    
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/canvasjs.min.js"></script>
@@ -18,7 +19,7 @@
         <a href="index.html" target="_parent"><button class="tablinks" >Overview</button></a>
         <a href="plate.html" target="_parent"><button class="tablinks" >Plate Map</button></a>
         <a href="depth101.html" target="_parent"><button class="tablinks" >Depth 101</button></a>
-        <a href="magnitude.html" target="_parent"><button class="tablinks" >Magnitude</button></a>
+        <a href="magnitude.html" target="_parent" class="activepage"><button class="tablinks" >Magnitude</button></a>
         <a href="simulator.html" target="_parent"><button class="tablinks" >Magnitude Simulator</button></a>
         <a href="event.html" target="_parent"><button class="tablinks" >Events</button></a>
     </div>
@@ -26,7 +27,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9" style="width: 75%">
-				<div id="chartContainer" style="height: 480px"></div>
+				<div id="chartContainer" style="height: 400px"></div>
 			</div>
 			<div class="col-sm-3" style="width: 25%"> 
 				<h3>Side Contents</h3>
@@ -42,23 +43,30 @@
     function createChart(newDataPoints){
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
-            exportEnabled: true,
+            exportEnabled: false,
             theme: "dark1", // "light1", "light2", "dark1", "dark2"
             title:{
-                text: "Manitude Distrubution from 1965 - 2016"
+                text: "Manitude Distrubution from 1965 - 2016",
+                fontFamily: "share"
             },
             axisY:{
             	title: "Count",
+            	gridColor: "#7B7D7B",
+            	fontFamily: "share",
+            	titleFontSize: 13,
             },
             axisX:{
-            	title: "Magnitude (Richter magnitude scale)"
+            	title: "Magnitude (Richter magnitude scale)",
+            	fontFamily: "share",
+            	titleFontSize: 13,
             },
             data: [{
                 type: "column",
+                color: "#6a96ce",
                 indexLabelFontColor: "#5A5757",
                 indexLabelPlacement: "outside",
                 dataPoints: [
-                    { x: 5.5, y: 4685, indexLabel: "Highest" },
+                    { x: 5.5, y: 4685},
                     { x: 5.6, y: 3967 },
                     { x: 5.7, y: 3079 },
                     { x: 5.8, y: 2346 },
@@ -88,12 +96,12 @@
                     { x: 8.2, y: 7 },
                     { x: 8.3, y: 5 },
                     { x: 8.4, y: 2 },
-                    { x: 8.5, y: 0, indexLabel: "Lowest" },
+                    { x: 8.5, y: 0},
                     { x: 8.6, y: 2 },
                     { x: 8.7, y: 1 },
                     { x: 8.8, y: 1 },
-                    { x: 8.9, y: 0, indexLabel: "Lowest" },
-                    { x: 9.0, y: 0, indexLabel: "Lowest" },
+                    { x: 8.9, y: 0},
+                    { x: 9.0, y: 0},
                     { x: 9.1, y: 2 }
                 ]
             }]

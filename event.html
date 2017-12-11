@@ -3,7 +3,7 @@
 <head>
 	<title>InfoViz Event</title>
 	<meta charset="utf-8">
-<link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -31,6 +31,7 @@
 		<a href="magnitude.html" target="_parent"><button class="tablinks" >Magnitude</button></a>
 		<a href="simulator.html" target="_parent"><button class="tablinks" >Magnitude Simulator</button></a>
 		<a href="event.html" target="_parent"><button class="tablinks" >Events</button></a>
+        <a href="author.html" target="_parent"><button class="tablinks" >Author</button></a>
 	</div>
 	</br>
 	<div class="container">
@@ -337,9 +338,9 @@
 
                     document.getElementById("p1").innerHTML = "March 11, 2011 - At 2:46 p.m., a 9.1 magnitude earthquake takes place 231 miles northeast of Tokyo at a depth of 15.2 miles.The earthquake causes a tsunami with 30-foot waves that damage several nuclear reactors in the area. It is the largest earthquake ever to hit Japan."
                     document.getElementById("p2").innerHTML = "Number of people killed and missing:";
-                    document.getElementById("p3").innerHTML = "(Source: Japan's Fire and Disaster Management Agency) The combined total of confirmed deaths and missing is more than 22,000 (nearly 20,000 deaths and 2,500 missing). Deaths were caused by the initial earthquake and tsunami and by post-disaster health conditions.";
-                    document.getElementById("p4").innerHTML = "Other Facts:";
-                    document.getElementById("p5").innerHTML = "At the time of the earthquake, Japan had 54 nuclear reactors, with two under construction, and 17 power plants, that produced about 30% of Japan's electricity (IAEA 2011). Material damage from the earthquake and tsunami is estimated at about 25 trillion yen ($300 billion). There are six reactors at Tokyo Electric Power Company's Fukushima Daiichi plant, located about 65 km (40 miles) south of Sendai. A microsievert (mSv) is an internationally recognized unit measuring radiation dosage. People are typically exposed to a total of about 1,000 microsieverts in one year. The Japanese government estimated that the tsunami swept about five million tons of debris offshore, but that 70% sank, leaving 1.5 million tons floating in the Pacific Ocean. The debris was not considered to be radioactive.";
+                    document.getElementById("p3").innerHTML = "The combined total of confirmed deaths and missing is more than 22,000 (nearly 20,000 deaths and 2,500 missing.";
+                    // document.getElementById("p4").innerHTML = "Other Facts:";
+                    // document.getElementById("p5").innerHTML = "At the time of the earthquake, Japan had 54 nuclear reactors, with two under construction, and 17 power plants, that produced about 30% of Japan's electricity (IAEA 2011). Material damage from the earthquake and tsunami is estimated at about 25 trillion yen ($300 billion). There are six reactors at Tokyo Electric Power Company's Fukushima Daiichi plant, located about 65 km (40 miles) south of Sendai. A microsievert (mSv) is an internationally recognized unit measuring radiation dosage. People are typically exposed to a total of about 1,000 microsieverts in one year. The Japanese government estimated that the tsunami swept about five million tons of debris offshore, but that 70% sank, leaving 1.5 million tons floating in the Pacific Ocean. The debris was not considered to be radioactive.";
             }
 
             function switchTextContent2(eventName){
@@ -354,11 +355,11 @@
                     var src = document.getElementById("t1");
                     src.appendChild(img);
 
-                    document.getElementById("p1").innerHTML = "The 2010 Chile earthquake occurred off the coast of central Chile on Saturday, 27 February at 03:34 local time (06:34 UTC), having a magnitude of 8.8 on the moment magnitude scale, with intense shaking lasting for about three minutes. It was felt strongly in six Chilean regions (from Valparaíso in the north to Araucanía in the south), that together make up about 80 percent of the country's population. According to the United States Geological Survey (USGS) the cities experiencing the strongest shaking—VIII (Severe) on the Mercalli intensity scale(MM)—were Concepción, Arauco and Coronel."
+                    document.getElementById("p1").innerHTML = "The 2010 Chile earthquake had a magnitude of 8.8 on the moment magnitude scale, with intense shaking lasting for about three minutes. It was felt strongly in six Chilean regions (from Valparaíso in the north to Araucanía in the south), that together make up about 80 percent of the country's population. "
                     document.getElementById("p2").innerHTML = "Number of people killed and missing:";
-                    document.getElementById("p3").innerHTML = "The earthquake triggered a tsunami which devastated several coastal towns in south-central Chile and damaged the port at Talcahuano. Tsunami warnings were issued in 53 countries, and the wave caused minor damage in the San Diego area of California and in the Tōhoku region of Japan, where damage to the fisheries business was estimated at ¥6.26 billion (US$66.7 million). The earthquake also generated a blackout that affected 93 percent of the Chilean population and which went on for several days in some locations. President Michelle Bachelet declared a \"state of catastrophe\" and sent military troops to take control of the most affected areas. According to official sources, 525 people lost their lives, 25 people went missing[4] and about 9% of the population in the affected regions lost their homes.";
-                    document.getElementById("p4").innerHTML = "Other Facts:";
-                    document.getElementById("p5").innerHTML = "On 10 March, Swiss Reinsurance Co. estimated that the Chilean quake would cost insurance companies between 4 and 7 billion dollars. The rival German-based Munich Re AG made the same estimate.Earthquake's losses to the economy of Chile are estimated at US$15–30 billion.";
+                    document.getElementById("p3").innerHTML = "The earthquake also generated a blackout that affected 93 percent of the Chilean population. According to official sources, 525 people lost their lives, 25 people went missing and about 9% of the population in the affected regions lost their homes.";
+                    // document.getElementById("p4").innerHTML = "Other Facts:";
+                    // document.getElementById("p5").innerHTML = "On 10 March, Swiss Reinsurance Co. estimated that the Chilean quake would cost insurance companies between 4 and 7 billion dollars. The rival German-based Munich Re AG made the same estimate.Earthquake's losses to the economy of Chile are estimated at US$15–30 billion.";
             }
 
             function switchTextContent3(eventName){
@@ -374,11 +375,11 @@
                     var src = document.getElementById("t1");
                     src.appendChild(img);
 
-                    document.getElementById("p1").innerHTML = "The 2004 Indian Ocean earthquake occurred at 00:58:53 UTC on 26 December with the epicentre off the west coast of Sumatra, Indonesia. The shock had a moment magnitude of 9.1–9.3 and a maximum Mercalli intensity of IX (Violent). "
+                    document.getElementById("p1").innerHTML = "The 2004 Indian Ocean earthquake occurred at 00:58:53 UTC on 26 December with the epicentre off the west coast of Sumatra, Indonesia. The undersea megathrust earthquake triggered a series of devastating tsunamis along the coasts of most landmasses bordering the Indian Ocean. "
                     document.getElementById("p2").innerHTML = "Number of people killed and missing:";
-                    document.getElementById("p3").innerHTML = "The undersea megathrust earthquake was caused when the Indian Plate was subducted by the Burma Plate and triggered a series of devastating tsunamis along the coasts of most landmasses bordering the Indian Ocean, killing 230,000–280,000 people in 14 countries, and inundating coastal communities with waves up to 30 metres (100 ft) high. It was one of the deadliest natural disasters in recorded history. Indonesia was the hardest-hit country, followed by Sri Lanka, India, and Thailand.";
-                    document.getElementById("p4").innerHTML = "Other Facts:";
-                    document.getElementById("p5").innerHTML = "It is the third-largest earthquake ever recorded on a seismograph and had the longest duration of faulting ever observed, between 8.3 and 10 minutes. It caused the entire planet to vibrate as much as 1 centimetre (0.4 inches) and triggered other earthquakes as far away as Alaska. Its epicentre was between Simeulue and mainland Indonesia. The plight of the affected people and countries prompted a worldwide humanitarian response. In all, the worldwide community donated more than US$14 billion (2004) in humanitarian aid. The event is known by the scientific community as the Sumatra–Andaman earthquake. The resulting tsunami was given various names, including the 2004 Indian Ocean tsunami, South Asian tsunami, Indonesian tsunami, the Christmas tsunami, and the Boxing Day tsunami.";
+                    document.getElementById("p3").innerHTML = "The series of devastating tsunamis killed 230,000–280,000 people in 14 countries.";
+                    // document.getElementById("p4").innerHTML = "Other Facts:";
+                    // document.getElementById("p5").innerHTML = "It is the third-largest earthquake ever recorded on a seismograph and had the longest duration of faulting ever observed, between 8.3 and 10 minutes. It caused the entire planet to vibrate as much as 1 centimetre (0.4 inches) and triggered other earthquakes as far away as Alaska. Its epicentre was between Simeulue and mainland Indonesia. The plight of the affected people and countries prompted a worldwide humanitarian response. In all, the worldwide community donated more than US$14 billion (2004) in humanitarian aid. The event is known by the scientific community as the Sumatra–Andaman earthquake. The resulting tsunami was given various names, including the 2004 Indian Ocean tsunami, South Asian tsunami, Indonesian tsunami, the Christmas tsunami, and the Boxing Day tsunami.";
                 // }
                 
             }

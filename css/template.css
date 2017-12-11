@@ -12,22 +12,41 @@ h1 {
     color: #ffffff;
     text-align: center;
     font-family: Share;
+    font-size: 44px;
+
 }
 h2 {
     color: #ffffff;
     text-align: center;
     font-family: Share;
+    font-size: 30px;
 }
 h3 {
     color: #ffffff;
     text-align: center;
     font-family: Share;
+    font-size: 28px;
+}
+h4 {
+    text-align: center;
+    font-family: Share;
+    font-size: 20px;
 }
 p {
-    color: #ffffff;
+    color: #F3F3F3;
     /*text-align: center;*/
-    font-family: open sans;
-        font-size: 14px;
+    font-family: Share;
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+text {
+    color: #F3F3F3;
+    /*text-align: center;*/
+    font-family: Share;
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 400;
 }
 a{
     color: #ffffff;
@@ -37,19 +56,22 @@ a:hover{
     color: #ffffff;
 }
 p.normal {
+    color: #F3F3F3;
     font-weight: normal;
 }
 
 p.thick {
-    font-weight: bold;
+    color: #ffffff;
+    font-weight: 700;
 }
 /* Style the tab */
 div.tab {
     /*margin-left: 10%;*/
     color: #ffffff;
-    font-family: open sans;
+    font-family: Share;
     overflow: hidden;
     border: 0px solid #ccc;
+    font-size: 14px;
     background-color: #363636;
     /*margin: 100px;*/
     /*background-color: #2b2b2b;*/
@@ -69,6 +91,10 @@ div.tab button {
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
+    background-color: #494848;
+}
+
+.activepage {
     background-color: #494848;
 }
 
@@ -93,7 +119,7 @@ div.tab button:hover {
     border: 1px solid #ccc;
     border-top: none;
     color: #ffffff;
-    font-family: open sans;
+    font-family: Share;
 }
 
 /* Create an active/current tablink class */

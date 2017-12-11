@@ -8,7 +8,7 @@
  z-index: 1;
  margin: 0 auto;
  top: 0px;
- left: 0px;
+ left: 20px;
 }
 
 .plate-cover {
@@ -18,11 +18,48 @@
  position: absolute;
  z-index: 2;
  top: 28px;
- left: 0px;
+ left: 20px;
 }
 
 .label-bar {
   position: relative;
   bottom: -440px;
   margin-bottom: 30px;
+  margin-left: 5px;
 }
+
+.plates-intro {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px; 
+}
+
+.plates-intro img {
+   display: block;
+   flex-grow: 1;
+   width: 45%;
+   height: 45%;
+}
+
+.plates-intro .text-box {
+	margin-left: 20px;
+	flex-grow: 1;
+}
+
+.title {
+	text-align: center;
+}
+
+.title-1 {
+	color: #EC1E50;
+}
+
+.title-2 {
+	color: #F8E71C;
+}
+
+.title-3 {
+	color: #0AE7FA;
+}
+
+
