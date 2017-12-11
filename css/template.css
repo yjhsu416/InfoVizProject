@@ -23,14 +23,29 @@ h3 {
     text-align: center;
     font-family: open sans;
 }
+p {
+    color: #ffffff;
+    /*text-align: center;*/
+    font-family: open sans;
+        font-size: 14px;
+}
+p.normal {
+    font-weight: normal;
+}
+
+p.thick {
+    font-weight: bold;
+}
 /* Style the tab */
 div.tab {
-    /*margin-left: 30%;*/
+    /*margin-left: 10%;*/
     color: #ffffff;
     font-family: open sans;
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #2b2b2b;
+    border: 0px solid #ccc;
+    background-color: #363636;
+    /*margin: 100px;*/
+    /*background-color: #2b2b2b;*/
 }
 
 /* Style the buttons inside the tab */

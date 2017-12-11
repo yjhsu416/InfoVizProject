@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>InfoViz Earthquake Template</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/canvasjs.min.js"></script>
+
+	<link rel="stylesheet" href="css/template.css">
+	<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+</head>
+<body>
+	<h1 class="text-center">SI 649: Info Visualization Group Project</h1></br>
+	<div class="tab">
+		<button class="tablinks" >Overview</button>
+		<button class="tablinks" >Plate Map</button>
+		<button class="tablinks" >Depth 101</button>
+		<button class="tablinks" >Magnitude</button>
+		<button class="tablinks" >Magnitude Simulator</button>
+		<button class="tablinks" >Events</button>
+	</div>
+	</br>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9" style="width: 75%">
+				<h3>Main Contents</h3>
+				<!-- Replace the img tag to div or any other kind of tags -->
+				<img src="img/depth_explain.png" class="img-responsive" style="width:100%" alt="Image">
+			</div>
+			<div class="col-sm-3" style="width: 25%"> 
+				<h3>Side Contents</h3>
+				<!-- Replace the img tag to div or any other kind of tags -->
+				<p>The focal depth refers to the depth at which an earthquake occurs. Earthquakes occurring at a depth of less than 70 km are classified as shallow-focus earthquakes, while those with a focal depth between 70 km and 300 km are commonly termed intermediate-depth earthquakes.
+				Deep-focus earthquakes may occur at much greater depths in the mantle, ranging from 300 km up to 700 km, where older and colder oceanic crust descends beneath another tectonic plate.
+                Earthquakes at this depth of focus typically occur at oceanic-continental convergent boundaries.</p>
+                <div id="chartContainer" style="height: 200px; width: 100%;"></div>
+				<script>
+				    var dataPoints = "";
+                    createChart(dataPoints);
+                    
+				    function createChart(newDataPoints){
+                        var chart = new CanvasJS.Chart("chartContainer", {
+                        animationEnabled: true,
+                        exportEnabled: false,
+                        theme: "dark1", // "light1", "light2", "dark1", "dark2"
+                        tile:{
+                            text: "Historical Data"
+                        },
+                        axisY:{
+                            title: "Number of Earthquakes",
+                            gridThickness: 0
+                        },
+                        data: [{
+                            type: "column", //change type to bar, line, area, pie, etc
+                            //indexLabel: "{y}", //Shows y value on all Data Points
+                        indexLabelFontColor: "#5A5757",
+                        indexLabelPlacement: "outside",
+                        dataPoints: [
+                            { y: 18525, label: "Shallow" },
+                            { y: 3391, label: "Intermediate"},
+                            { y: 1326, label: "Deep" },
+                        ]
+                        }]
+                        });
+                        chart.render();
+                    }
+				</script>
+			</div>
+		</div>
+	</div><br>
+</body>
+</html>
