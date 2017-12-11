@@ -1,0 +1,10 @@
+.scalebutton {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px 25px;
+    transition: 0.3s;
+    font-size: 15px;
+}
