@@ -33,7 +33,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9" style="width: 75%">
-                <h3>Introduction Plates</h3>
+                <h3>Why earthquakes frequently happened in some area?</h3>
                 <!-- Replace the img tag to div or any other kind of tags -->
                 <div class="row" style="width: 100%;">
                     <div id="slidecontainer">
@@ -52,12 +52,28 @@
                 </div>
             </div>
             <div class="col-sm-3" style="width: 25%"> 
-                <h3>Side Contents</h3>
-                <p> Bubbles on the map a earthquake happening in that location. The size and color of bubbles represent the magnitude and depth of the earthquake.</p>
-                <div>
+                <h3>Tectonic Plates</h3>
+                <p>Subduction of plates occurs in a wide zone of plate contact. This zone is defined by a zone of frequent earthquakes.</p>
+                <h4 class="title title-1">Divergent</h4>
+                <div class="plates-intro">
                     <img src="img/divergent.png">
+                    <div class="text-box">
+                        <p>Two plates are moving away from each other and new crust is forming from magma.</p>
+                    </div>
+                </div>
+                <h4 class="title title-2">Transform</h4>
+                <div class="plates-intro">
                     <img src="img/transform.png">
+                    <div class="text-box">
+                        <p>Transform faults are predominantly horizontal movements and are hidden in the deep ocean.</p>
+                    </div>
+                </div>
+                <h4 class="title title-3">Convergent</h4>
+                <div class="plates-intro">
                     <img src="img/convergent.png">
+                    <div class="text-box">
+                        <p>Destructive plate boundary often occurs large, shallow earthquakes on subduction zone.</p>
+                    </div>
                 </div>
 
 
@@ -107,22 +123,22 @@
             var fillOpacityValue;
             if (depthValue < 20) {;
                 colorfillKey = 'C6';
-                fillOpacityValue = 0.7;
+                fillOpacityValue = 0.1;
             } else if (depthValue >= 20 && depthValue < 40) {
                 colorfillKey = 'C5';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.1;
             } else if (depthValue >= 40 && depthValue < 60) {         
                 colorfillKey = 'C4';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.1;
             } else if (depthValue >= 60 && depthValue < 100) {
                 colorfillKey = 'C3';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.1;
             } else if (depthValue >= 100 && depthValue < 200) {
                 colorfillKey = 'C2';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.1;
             } else{
                 colorfillKey = 'C1';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.1;
             }
 
             bombsnew.push({
@@ -159,14 +175,15 @@
 
         });
 
-        function plotMap() {
+               function plotMap() {
             var Map = new Datamap({
             element: document.getElementById('container1'),
             scope: 'world',
             geographyConfig: {
                 popupOnHover: false,
                 highlightOnHover: false,
-                borderColor:'#a3a3a3', 
+                // borderColor:'#494949',
+                borderColor:'#242426', 
             },
             fills: {
                 'C6':'#6ba7ff',
@@ -175,7 +192,8 @@
                 'C3':'#2843DC',
                 'C2':'#132FB0',
                 'C1':'#0011A3',
-                defaultFill: '#6b6b6b'
+                // defaultFill: '#6b6b6b'
+                defaultFill: '#393B44',
             },
             bubblesConfig: {
                 highlightOnHover: true,
