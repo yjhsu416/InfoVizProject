@@ -94,6 +94,10 @@ div.tab button:hover {
     background-color: #494848;
 }
 
+.activepage {
+    background-color: #494848;
+}
+
 
 
 /*div.tab button:visited {
