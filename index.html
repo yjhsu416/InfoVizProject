@@ -4,6 +4,7 @@
     <title>InfoViz Earthquake Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,6 +18,9 @@
     <style>
         #container1 { border:0px ; width: 800px; height: 400px;margin:0 auto; }
     </style>
+    <style>
+        #container2 { border:0px ; width: 800px; height: 30px;margin:0 auto; }
+    </style>
 </head>
 <body>
     <h1 class="text-center">SI 649: Info Visualization Group Project</h1></br>
@@ -27,6 +31,7 @@
         <a href="magnitude.html" target="_parent"><button class="tablinks" >Magnitude</button></a>
         <a href="simulator.html" target="_parent"><button class="tablinks" >Magnitude Simulator</button></a>
         <a href="event.html" target="_parent"><button class="tablinks" >Events</button></a>
+        <a href="author.html" target="_parent"><button class="tablinks" >Author</button></a>
     </div>
     </br>
     <div class="container">
@@ -41,7 +46,13 @@
                     </div>
                 </div>
                 <div class="row" style="width: 100%;">
-                    <button id = "button1" style = "margin-left:5%" class="button" onclick="runslider()">Start!</button>  
+                    <div class="col-sm-3">
+                        <button id = "button1" style = "margin-left:5%" class="button" onclick="runslider()">Start!</button>
+                    </div>
+                    <div class="col-sm-9">
+                        <p></p>
+                        <p id="pnumber" style = "margin-left: 10%"></p>  
+                    </div>  
                 </div>
                 <div class="row" style="width: 100%;">
                     <div class="col-sm-12">
@@ -54,10 +65,11 @@
             </div>
             <div class="col-sm-3" style="width: 25%"> 
                 <h3>Earthquake Facts</h3>
-                <p> More than 800,000 earthquakes occur globally every year. Most of them are not felt by human. But a significant number of destructive earthquakes are still causing tragic effects every year.</p>
-                <p> The global visualization map shows the earthquaks with magnitude large than 5.0 from 1965 to 2016.</p>
-                <p> Bubbles on the map indicate earthquakes happening in that location. The size and color of bubbles represent the magnitude and depth of the earthquake.</p>
-                <p>Click the <i>Start!</i> button to see earthquakes from 1965 to 2016. You can also hover on a bubble to see more information about that earthquake.</p>
+                <p> More than 800,000 earthquakes occur globally every year. Most of them are not felt by human. But a significant number of destructive earthquakes occur and cause tragic effects every year.</p>
+                <img style = "margin-left:0%" src="./img/eqimg2.jpg" width = "100%" height = "50%">
+                <p></p>
+                <p> The global earthquake visualization map shows earthquakes with magnitude large than 5.0 from the year of 1965 to 2016.</p>
+                <p>Click the <i>Start!</i> button to see the trend of earthquakes. You can also hover on a bubble to see more information about that earthquake.</p>
             </div>
         </div>
     </div><br>
@@ -99,7 +111,9 @@
         //create bomb data
         var bombsnew = [];
         var len = yearIndex.length;
-        //console.log(len);
+        document.getElementById("pnumber").innerHTML = "Number of earthquakes (magnitude > 5.0): " + len;
+
+        console.log(len);
         for(var i = 0; i < len; i++) {
             var dateValue=eqdata[yearIndex[i]].Date;
             var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
@@ -117,13 +131,13 @@
                 fillOpacityValue = 0.6;
             } else if (depthValue >= 40 && depthValue < 70) {
                 colorfillKey = 'C3';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.5;
             } else if (depthValue >= 70 && depthValue < 300) {
                 colorfillKey = 'C2';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.5;
             } else{
                 colorfillKey = 'C1';
-                fillOpacityValue = 0.6;
+                fillOpacityValue = 0.5;
             }
 
 
@@ -245,14 +259,10 @@
                     
         }
 
-    }
-    
-    
-
-    
-    
+    }    
 </script>
 </div>
+
 
 
 </body>
