@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/canvasjs.min.js"></script>
@@ -42,27 +43,40 @@
                     createChart(dataPoints);
                     
 				    function createChart(newDataPoints){
+                        CanvasJS.addColorSet("blueShades",
+                        [//colorSet Array
+                            "#6a96ce",
+                            "#3e59a6", 
+                            "#293a90"              
+                        ]);
                         var chart = new CanvasJS.Chart("chartContainer", {
+                        colorSet: "blueShades",
                         animationEnabled: true,
                         exportEnabled: false,
                         theme: "dark1", // "light1", "light2", "dark1", "dark2"
-                        tile:{
-                            text: "Historical Data"
+                        axisX:{
+                            title: "Depth Level",
+//                             gridThickness: 0,
+                            fontFamily: "share",
+                            titleFontSize: 7,
+                            fontSize: 13,
                         },
                         axisY:{
                             title: "Number of Earthquakes",
-                            gridThickness: 0
+                            gridThickness: 0,
+                            fontFamily: "share",
+                            titleFontSize: 10,
                         },
                         data: [{
                             type: "column", //change type to bar, line, area, pie, etc
                             //indexLabel: "{y}", //Shows y value on all Data Points
-                        indexLabelFontColor: "#5A5757",
-                        indexLabelPlacement: "outside",
-                        dataPoints: [
-                            { y: 18525, label: "Shallow" },
-                            { y: 3391, label: "Intermediate"},
-                            { y: 1326, label: "Deep" },
-                        ]
+                            indexLabelFontColor: "#5A5757",
+                            indexLabelPlacement: "outside",
+                            dataPoints: [
+                                { y: 18525, label: "Shallow" },
+                                { y: 3391, label: "Intermediate"},
+                                { y: 1326, label: "Deep" }
+                            ]
                         }]
                         });
                         chart.render();
