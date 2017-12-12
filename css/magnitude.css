@@ -16,6 +16,13 @@
     display: inline-block;
 }
 
+h4 {
+    color: #ffffff;
+    text-align: center;
+    font-family: Share;
+    font-size: 20px;
+}
+
 /*.scalebutton:hover {
     background-color: #6a96ce;
     color: white;
