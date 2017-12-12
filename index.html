@@ -23,20 +23,20 @@
     </style>
 </head>
 <body>
-    <h1 class="text-center">SI 649: Info Visualization Group Project</h1></br>
+    <h1 class="text-center">Earthquake 101</h1></br>
     <div class="tab">
-        <a href="index.html" target="_parent" class = "activepage"><button class="tablinks" >Overview</button></a>
-        <a href="plate.html" target="_parent" ><button class="tablinks" >Plate Map</button></a>
-        <a href="depth101.html" target="_parent" ><button class="tablinks" >Depth 101</button></a>
-        <a href="magnitude.html" target="_parent" ><button class="tablinks" >Magnitude</button></a>
-        <a href="simulator.html" target="_parent" ><button class="tablinks" >Magnitude Simulator</button></a>
-        <a href="event.html" target="_parent" ><button class="tablinks" >Events</button></a>
+        <a href="index.html" target="_parent" class="activepage"><button class="tablinks" >Step1: Overview</button></a>
+        <a href="plate.html" target="_parent"><button class="tablinks" >Step2: Plate Map</button></a>
+        <a href="depth101.html" target="_parent"><button class="tablinks" >Step3: Depth</button></a>
+        <a href="magnitude.html" target="_parent"><button class="tablinks" >Step4: Magnitude</button></a>
+        <a href="simulator.html" target="_parent"><button class="tablinks" >Step5: Magnitude Simulator</button></a>
+        <a href="event.html" target="_parent"><button class="tablinks" >Step6: Events</button></a>
         <a href="author.html" target="_parent" ><button class="tablinks" >Authors</button></a>
     </div>
     </br>
     <div class="container">
         <div class="row">
-            <div class="col-sm-9" style="width: 75%">
+            <div class="col-sm-9 fadeinElement" style="width: 75%">
                 <h3>How many earthquakes occurred every year?</h3>
                 <!-- Replace the img tag to div or any other kind of tags -->
                 <div class="row" style="width: 100%;">
@@ -55,7 +55,7 @@
                     </div>  
                 </div>
                 <div class="row" style="width: 100%;">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 fadeinElement">
                         <div id="container1"></div>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                 }
                 showValue(i);
                 document.getElementById("slider1").value = i;
-                await sleep(400);            
+                await sleep(750);            
             }
             currentyear = document.getElementById("slider1").value;
             if(currentyear == 2016) {               
