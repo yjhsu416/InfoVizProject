@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Event</title>
+	<title>Earthquake 101</title>
 	<meta charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +39,7 @@
     </div>
 		<div class="row">
 			<div class="col-sm-9 fadeinElement" style="width: 75%">
-				<h3 id="titleEvnet">Here are the earthquakes occured last year. (2016)</h3>
+				<h3 id="titleEvnet">Lots of earthquakes happened over the years. Some were very big...</h3>
 				<!-- Replace the img tag to div or any other kind of tags -->
                 <div class="row" style="width: 100%;">
                     <div class="col-sm-12">
@@ -219,13 +219,13 @@
   //     .style("fill", "black");
 
     
-    var delayInMilliseconds = 3000; //1 second
+    var delayInMilliseconds = 5000; //1 second
     // d3.selectAll("svg.datamap").remove();
 
     setTimeout(function() {
         special();
-        document.getElementById("titleEvnet").innerHTML = "Do you know how severe earthquake may cause?";
-        document.getElementById("m1").innerHTML = "Let's read some stories of three of the most severe earthquakes occured in last 50 years. Hover on the bubbles to read."
+        document.getElementById("titleEvnet").innerHTML = "Let's read some stories of three of the most severe earthquakes occured in last 50 years. Hover on the bubbles to read.";
+        document.getElementById("m1").innerHTML = ""
         d3.selectAll(".datamap").remove();
      //your code to be executed after 1 second
         queue()
@@ -259,7 +259,7 @@
             var len = yearIndex.length;
             for(var i = 0; i < len; i++) {
                 var dateValue=eqdata[yearIndex[i]].Date;
-                var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] + "/";
+                var date = dateValue[0] + dateValue[1] + "/" + dateValue[3] + dateValue[4] +"/";
                 var depthValue = parseFloat(eqdata[yearIndex[i]].Depth);
                 var colorfillKey;
                 var fillOpacityValue;
@@ -319,9 +319,10 @@
                     }else if(eventName =="12/26/,00:58:53"){
                         switchTextContent3(eventName);
                     }
+
                     return ['<div class="hoverinfo">' +  data.name,
                     '<br/>Magnitude: ' +  data.magnitude + '',
-                    '<br/>Depth: ' +  data.depth + '',
+                    '<br/>Depth: ' +  data.depth + 'km',
                     '</div>'].join('');
                 }
 
