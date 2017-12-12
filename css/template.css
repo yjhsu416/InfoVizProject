@@ -64,6 +64,7 @@ p.thick {
     color: #ffffff;
     font-weight: 700;
 }
+
 /* Style the tab */
 div.tab {
     /*margin-left: 10%;*/
@@ -75,6 +76,27 @@ div.tab {
     background-color: #363636;
     /*margin: 100px;*/
     /*background-color: #2b2b2b;*/
+}
+
+.tabs {
+  position: relative;
+  background-color: #363636;
+}
+
+.tabs:before, 
+.tabs:after {
+  content: "";
+  position: absolute;
+  background: #363636;  /* Match the background */
+  top: 0;
+  bottom: 0;
+  width: 9999px;   /* some huge width */
+} 
+.tabs:before {
+  right: 100%; 
+}
+.tabs:after {
+  left: 100%;
 }
 
 /* Style the buttons inside the tab */
@@ -96,6 +118,12 @@ div.tab button:hover {
 
 .activepage {
     background-color: #494848;
+}
+
+.full-width-div {
+    position: absolute;
+    width: 100%;
+    left: 0;
 }
 
 .fadeinElement {
