@@ -1,7 +1,7 @@
 body {
     background-color: #242426;
     vertical-align: middle;
- 
+    overflow: hidden;
 }
 div {
    word-wrap: break-word;
@@ -81,7 +81,7 @@ div.tab {
 .tabs {
   position: relative;
   background-color: #363636;
-  width: 91vw;
+  width: 100vw;
 }
 
 .tabs:before, 
@@ -91,7 +91,7 @@ div.tab {
   background: #363636;  /* Match the background */
   top: 0;
   bottom: 0;
-  width: 5vw;
+  width: 100vw;
 } 
 .tabs:before {
   right: 100%; 
@@ -119,12 +119,6 @@ div.tab button:hover {
 
 .activepage {
     background-color: #494848;
-}
-
-.full-width-div {
-    position: absolute;
-    width: 100%;
-    left: 0;
 }
 
 .fadeinElement {
