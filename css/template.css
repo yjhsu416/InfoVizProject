@@ -81,6 +81,7 @@ div.tab {
 .tabs {
   position: relative;
   background-color: #363636;
+  width: 91vw;
 }
 
 .tabs:before, 
@@ -90,7 +91,7 @@ div.tab {
   background: #363636;  /* Match the background */
   top: 0;
   bottom: 0;
-  width: 9999px;   /* some huge width */
+  width: 5vw;
 } 
 .tabs:before {
   right: 100%; 
@@ -197,4 +198,4 @@ div.tab button:hover {
 /*/* Create an active/current tablink class */
 div.tab button:active {
     background-color: #555555;
-}*/
+}
