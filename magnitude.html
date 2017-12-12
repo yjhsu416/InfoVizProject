@@ -40,7 +40,7 @@
 			</div>
 			<div class="col-sm-3 fadeinElement" style="width: 25%"> 
 				<h3 class="text-center" id="sideTitle">Basic Knowledge</h3>
-                <p class="text-justify" id="sideTextContent">The Richter magnitude scale was developed in 1935 by Charles F. Richter of the California Institute of Technology as a mathematical device to compare the size of earthquakes. On the Richter Scale, magnitude is expressed in whole numbers and decimal fractions. For example, a magnitude 5.3 might be computed for a moderate earthquake, and a strong earthquake might be rated as magnitude 6.3. Because of the logarithmic basis of the scale, each whole number increase in magnitude represents a tenfold increase in measured amplitude; as an estimate of energy, each whole number step in the magnitude scale corresponds to the release of about 31 times more energy than the amount associated with the preceding whole number value. </br></br> Reference: USGS</p>                
+                <p id="sideTextContent">The Richter magnitude scale was developed in 1935 by Charles F. Richter of the California Institute of Technology as a mathematical device to compare the size of earthquakes. On the Richter Scale, magnitude is expressed in whole numbers and decimal fractions. For example, a magnitude 5.3 might be computed for a moderate earthquake, and a strong earthquake might be rated as magnitude 6.3. Because of the logarithmic basis of the scale, each whole number increase in magnitude represents a tenfold increase in measured amplitude; as an estimate of energy, each whole number step in the magnitude scale corresponds to the release of about 31 times more energy than the amount associated with the preceding whole number value. </br></br> Reference: USGS</p>                
                 <div id="percentageChartContainer" style="height: 400px; width: 100%;"></div>
 			</div>
 		</div>
@@ -90,11 +90,15 @@
 
     var sideText = "The Richter magnitude scale was developed in 1935 by Charles F. Richter of the California Institute of Technology as a mathematical device to compare the size of earthquakes. On the Richter Scale, magnitude is expressed in whole numbers and decimal fractions. For example, a magnitude 5.3 might be computed for a moderate earthquake, and a strong earthquake might be rated as magnitude 6.3. Because of the logarithmic basis of the scale, each whole number increase in magnitude represents a tenfold increase in measured amplitude; as an estimate of energy, each whole number step in the magnitude scale corresponds to the release of about 31 times more energy than the amount associated with the preceding whole number value. </br></br> Reference: USGS";
 
+    document.getElementById("percentageChartContainer").innerHTML = "";
+    document.getElementById("percentageChartContainer").style.height = "0px";
+
     function updateChart(set) {
         switch(set) {
             case 0:
                 createChart(dataPoints.slice(0));
                 document.getElementById("percentageChartContainer").innerHTML = "";
+                document.getElementById("percentageChartContainer").style.height = "0px";
                 document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
                 document.getElementById("sideTextContent").innerHTML = sideText;
                 break;
@@ -113,6 +117,7 @@
             default:
                 createChart(dataPoints.slice(5));
                 document.getElementById("percentageChartContainer").innerHTML = "";
+                document.getElementById("percentageChartContainer").style.height = "0px";
                 document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
                 document.getElementById("sideTextContent").innerHTML = sideText;
                 break;
