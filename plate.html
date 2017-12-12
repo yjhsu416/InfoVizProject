@@ -88,6 +88,7 @@
         .await(ready);
     var check = 1; //check if the map has already been created. 
     var bombMap;
+    var sliderrun = 1; //run for loop to plot bubble when sliderrun = 1
 
     function ready(error, data) {
         var eqdata = data;
@@ -210,6 +211,10 @@
             });
             return Map;
         }
+
+        if(sliderrun == 1) {
+            runslider();
+        }
     }
        
     
@@ -260,6 +265,20 @@
         }
 
     }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function runslider() {
+        for(var i = 1965; i < 2017; i++) {
+            showValue(i);
+            document.getElementById("slider1").value = i;
+            await sleep(400); 
+            sliderrun++;           
+        }
+        sliderrun = 1;
+    }    
     
 
     
