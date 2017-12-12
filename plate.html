@@ -30,12 +30,13 @@
         <a href="magnitude.html" target="_parent"><button class="tablinks" >Magnitude</button></a>
         <a href="simulator.html" target="_parent"><button class="tablinks" >Magnitude Simulator</button></a>
         <a href="event.html" target="_parent"><button class="tablinks" >Events</button></a>
+        <a href="author.html" target="_parent" ><button class="tablinks" >Authors</button></a>
     </div>
     </br>
     <div class="container">
         <div class="row">
             <div class="col-sm-9" style="width: 75%">
-                <h3>Why earthquakes frequently happened in some area?</h3>
+                <h3>Why earthquakes frequently happened in the certain areas?</h3>
                 <!-- Replace the img tag to div or any other kind of tags -->
                 <div class="row" style="width: 100%;">
                     <div id="slidecontainer">
@@ -55,7 +56,7 @@
             </div>
             <div class="col-sm-3" style="width: 25%"> 
                 <h3>Tectonic Plates</h3>
-                <p>Subduction of plates occurs in a wide zone of plate contact. This zone is defined by a zone of frequent earthquakes.</p>
+                <p>Subduction of plates occurs in a wide zone of plate contact. This zone is defined by a zone of frequent earthquakes.<br><br></p>
                 <h4 class="title title-1">Divergent</h4>
                 <div class="plates-intro">
                     <img src="img/divergent.png">
@@ -126,22 +127,22 @@
             var fillOpacityValue;
             if (depthValue < 20) {;
                 colorfillKey = 'C6';
-                fillOpacityValue = 0.1;
+                fillOpacityValue = 0.2;
             } else if (depthValue >= 20 && depthValue < 40) {
                 colorfillKey = 'C5';
-                fillOpacityValue = 0.1;
+                fillOpacityValue = 0.2;
             } else if (depthValue >= 40 && depthValue < 60) {         
                 colorfillKey = 'C4';
-                fillOpacityValue = 0.1;
+                fillOpacityValue = 0.2;
             } else if (depthValue >= 60 && depthValue < 100) {
                 colorfillKey = 'C3';
-                fillOpacityValue = 0.1;
+                fillOpacityValue = 0.2;
             } else if (depthValue >= 100 && depthValue < 200) {
                 colorfillKey = 'C2';
-                fillOpacityValue = 0.1;
+                fillOpacityValue = 0.2;
             } else{
                 colorfillKey = 'C1';
-                fillOpacityValue = 0.1;
+                fillOpacityValue = 0.2;
             }
 
             bombsnew.push({

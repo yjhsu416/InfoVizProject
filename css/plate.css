@@ -17,7 +17,7 @@
  margin: 0 auto; 
  position: absolute;
  z-index: 2;
- top: 28px;
+ top: 18px;
  left: 20px;
 }
 
@@ -26,12 +26,13 @@
   bottom: -440px;
   margin-bottom: 30px;
   margin-left: 5px;
+  margin-top: 20px;
 }
 
 .plates-intro {
 	display: flex;
 	justify-content: space-between;
-	margin: 10px; 
+	margin: 15px 0px; 
 }
 
 .plates-intro img {
