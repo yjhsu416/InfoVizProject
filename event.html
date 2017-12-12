@@ -73,7 +73,7 @@
 	</div><br>
 	<script>
     queue()
-        .defer(d3.csv, "database.csv")
+        .defer(d3.csv, "./data/database.csv")
         .await(ready);
     var check = 1; //check if the map has already been created. 
     var bombMap;
@@ -228,7 +228,7 @@
         d3.selectAll(".datamap").remove();
      //your code to be executed after 1 second
         queue()
-            .defer(d3.csv, "database.csv")
+            .defer(d3.csv, "./data/database.csv")
             .await(ready2);
 
         var check = 1; //check if the map has already been created. 

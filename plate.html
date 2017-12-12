@@ -4,13 +4,14 @@
     <title>Earthquake Plate</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
-    <script src="datamaps.world.min.js"></script>
+    <script src="js/datamaps.world.min.js"></script>
     <script type="text/javascript" src="./js/canvasjs.min.js"></script>
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/maploop.css"> 
@@ -84,7 +85,7 @@
 
 <script>
     queue()
-        .defer(d3.csv, "database.csv")
+        .defer(d3.csv, "./data/database.csv")
         .await(ready);
     var check = 1; //check if the map has already been created. 
     var bombMap;
@@ -221,7 +222,7 @@
     function showValue(newValue)
     {   //d3.selectAll("svg.datamap").remove()
         document.getElementById("range").innerHTML=newValue;
-        queue().defer(d3.csv, 'database.csv').await(ready);
+        queue().defer(d3.csv, './data/database.csv').await(ready);
     }
 
     function sleep(ms) {

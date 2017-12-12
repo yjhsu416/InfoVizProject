@@ -11,7 +11,7 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
-    <script src="datamaps.world.min.js"></script>
+    <script src="js/datamaps.world.min.js"></script>
     <script type="text/javascript" src="./js/canvasjs.min.js"></script>
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/maploop.css"> 
@@ -216,7 +216,7 @@
     function showValue(newValue)
     {   //d3.selectAll("svg.datamap").remove()
         document.getElementById("range").innerHTML=newValue;
-        queue().defer(d3.csv, 'database.csv').await(ready);
+        queue().defer(d3.csv, './data/database.csv').await(ready);
     }
 
     function sleep(ms) {
