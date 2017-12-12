@@ -20,18 +20,18 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
 <style>
-    #container1 { border:0px ; width: 800px; height: 400px;margin:0 auto; }
+    #container1 { border:0px ; width: 800px; height: 450px;margin:0 auto; }
 </style>
 </head>
 <body>
 	<h1 class="text-center">SI 649: Info Visualization Group Project</h1></br>
 	<div class="tab">
-        <a href="index.html" target="_parent" ><button class="tablinks" >Overview</button></a>
-        <a href="plate.html" target="_parent" ><button class="tablinks" >Plate Map</button></a>
-        <a href="depth101.html" target="_parent" ><button class="tablinks" >Depth 101</button></a>
-        <a href="magnitude.html" target="_parent" ><button class="tablinks" >Magnitude</button></a>
-        <a href="simulator.html" target="_parent" ><button class="tablinks" >Magnitude Simulator</button></a>
-        <a href="event.html" target="_parent" class = "activepage"><button class="tablinks" >Events</button></a>
+        <a href="index.html" target="_parent" ><button class="tablinks" >Step1: Overview</button></a>
+        <a href="plate.html" target="_parent" ><button class="tablinks" >Step2: Plate Map</button></a>
+        <a href="depth101.html" target="_parent" ><button class="tablinks" >Step3: Depth</button></a>
+        <a href="magnitude.html" target="_parent" ><button class="tablinks" >Step4: Magnitude</button></a>
+        <a href="simulator.html" target="_parent" ><button class="tablinks" >Step5: Magnitude Simulator</button></a>
+        <a href="event.html" target="_parent" class = "activepage"><button class="tablinks" >Step6: Events</button></a>
         <a href="author.html" target="_parent" ><button class="tablinks" >Authors</button></a>
 	</div>
 	</br>
@@ -50,16 +50,16 @@
                 <h3 id= "t1">
                     Events
                 </h3>
-                </br>
-                <p class="thick" id="m1" ></p>
-               
+                <div class="event-label">
+                    <p class="thick" id="m1" ></p>
+                    <p class="thick" id="d1" ></p>
+                </div>
+
                 <p id="p1" >
                     </br>
                 </p>
-                <p class="thick" id="p2" >
-                </p>
+                <h4 class="thick" id="p2" > </h4>
                 <p id="p3" >
-
                     </br>
                 </p>
                 <p class="thick" id="p4" >
@@ -68,7 +68,6 @@
                 <p id="p5" >
             
                 </p>
-
 			</div>
 		</div>
 	</div><br>
@@ -331,7 +330,8 @@
                 // if(eventName="03/11/,05:46:24"){
                     // console.log(eventName);
                     document.getElementById("t1").innerHTML = "Japan";
-                    document.getElementById("m1").innerHTML = "Magnitude: 9.1, March 11, 2011"
+                    document.getElementById("m1").innerHTML = "Magnitude 9.1"
+                    document.getElementById("d1").innerHTML = "March 11, 2011"
                     var img = document.createElement("img");
                     img.src = "img/japan.jpg";
                     img.style.width="100%";
@@ -339,9 +339,9 @@
                     var src = document.getElementById("t1");
                     src.appendChild(img);
 
-                    document.getElementById("p1").innerHTML = "March 11, 2011 - At 2:46 p.m., a 9.1 magnitude earthquake takes place 231 miles northeast of Tokyo at a depth of 15.2 miles.The earthquake causes a tsunami with 30-foot waves that damage several nuclear reactors in the area. It is the largest earthquake ever to hit Japan."
-                    document.getElementById("p2").innerHTML = "Number of people killed and missing:";
-                    document.getElementById("p3").innerHTML = "The combined total of confirmed deaths and missing is more than 22,000 (nearly 20,000 deaths and 2,500 missing.";
+                     document.getElementById("p1").innerHTML = "A 9.1 magnitude earthquake takes place 231 miles northeast of Tokyo at a depth of 15.2 miles. The earthquake causes a tsunami with 30-foot waves that damage several nuclear reactors in the area. It is the largest earthquake ever to hit Japan."
+                    document.getElementById("p2").innerHTML = "Identified fatalities";
+                    document.getElementById("p3").innerHTML = "The total of confirmed deaths and missing is more than 22,000.";
                     // document.getElementById("p4").innerHTML = "Other Facts:";
                     // document.getElementById("p5").innerHTML = "At the time of the earthquake, Japan had 54 nuclear reactors, with two under construction, and 17 power plants, that produced about 30% of Japan's electricity (IAEA 2011). Material damage from the earthquake and tsunami is estimated at about 25 trillion yen ($300 billion). There are six reactors at Tokyo Electric Power Company's Fukushima Daiichi plant, located about 65 km (40 miles) south of Sendai. A microsievert (mSv) is an internationally recognized unit measuring radiation dosage. People are typically exposed to a total of about 1,000 microsieverts in one year. The Japanese government estimated that the tsunami swept about five million tons of debris offshore, but that 70% sank, leaving 1.5 million tons floating in the Pacific Ocean. The debris was not considered to be radioactive.";
             }
@@ -350,7 +350,8 @@
                  // if(eventName="02/27/,06:34:12"){
                     // console.log(eventName);
                     document.getElementById("t1").innerHTML = "Chile";
-                    document.getElementById("m1").innerHTML = "Magnitude: 8.8, February 27, 2010"
+                    document.getElementById("m1").innerHTML = "Magnitude 8.8"
+                    document.getElementById("d1").innerHTML = "February 27, 2010"
                     var img = document.createElement("img");
                     img.src = "img/chile.jpg";
                     img.style.width="100%";
@@ -359,8 +360,8 @@
                     src.appendChild(img);
 
                     document.getElementById("p1").innerHTML = "The 2010 Chile earthquake had a magnitude of 8.8 on the moment magnitude scale, with intense shaking lasting for about three minutes. It was felt strongly in six Chilean regions (from Valparaíso in the north to Araucanía in the south), that together make up about 80 percent of the country's population. "
-                    document.getElementById("p2").innerHTML = "Number of people killed and missing:";
-                    document.getElementById("p3").innerHTML = "The earthquake also generated a blackout that affected 93 percent of the Chilean population. According to official sources, 525 people lost their lives, 25 people went missing and about 9% of the population in the affected regions lost their homes.";
+                    document.getElementById("p2").innerHTML = "Identified fatalities";
+                    document.getElementById("p3").innerHTML = "525 people lost their lives, 25 people went missing.";
                     // document.getElementById("p4").innerHTML = "Other Facts:";
                     // document.getElementById("p5").innerHTML = "On 10 March, Swiss Reinsurance Co. estimated that the Chilean quake would cost insurance companies between 4 and 7 billion dollars. The rival German-based Munich Re AG made the same estimate.Earthquake's losses to the economy of Chile are estimated at US$15–30 billion.";
             }
@@ -369,8 +370,9 @@
                                 // 
                 // }else if(eventName="12/26/,00:58:53"){
                     // console.log(eventName);
-                    document.getElementById("t1").innerHTML = "Indian Ocean earthquake and tsunami";
-                    document.getElementById("m1").innerHTML = "Magnitude: 9.1, December 26, 2004"
+                    document.getElementById("t1").innerHTML = "Indian Ocean";
+                     document.getElementById("m1").innerHTML = "Magnitude 9.1"
+                    document.getElementById("d1").innerHTML = "December 26, 2004"
                     var img = document.createElement("img");
                     img.src = "img/south.jpg";
                     img.style.width="100%";
@@ -379,7 +381,7 @@
                     src.appendChild(img);
 
                     document.getElementById("p1").innerHTML = "The 2004 Indian Ocean earthquake occurred at 00:58:53 UTC on 26 December with the epicentre off the west coast of Sumatra, Indonesia. The undersea megathrust earthquake triggered a series of devastating tsunamis along the coasts of most landmasses bordering the Indian Ocean. "
-                    document.getElementById("p2").innerHTML = "Number of people killed and missing:";
+                    document.getElementById("p2").innerHTML = "Identified fatalities";
                     document.getElementById("p3").innerHTML = "The series of devastating tsunamis killed 230,000–280,000 people in 14 countries.";
                     // document.getElementById("p4").innerHTML = "Other Facts:";
                     // document.getElementById("p5").innerHTML = "It is the third-largest earthquake ever recorded on a seismograph and had the longest duration of faulting ever observed, between 8.3 and 10 minutes. It caused the entire planet to vibrate as much as 1 centimetre (0.4 inches) and triggered other earthquakes as far away as Alaska. Its epicentre was between Simeulue and mainland Indonesia. The plight of the affected people and countries prompted a worldwide humanitarian response. In all, the worldwide community donated more than US$14 billion (2004) in humanitarian aid. The event is known by the scientific community as the Sumatra–Andaman earthquake. The resulting tsunami was given various names, including the 2004 Indian Ocean tsunami, South Asian tsunami, Indonesian tsunami, the Christmas tsunami, and the Boxing Day tsunami.";

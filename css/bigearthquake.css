@@ -24,4 +24,21 @@ circle.datamaps-bubble {
 
 }
 
+.event-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
 
+
+#t1 img {
+    margin: 20px 0 0 0;
+}
+
+
+#p2 {
+    font-size: 16px;
+    color: #FC8D59;
+    text-align: left;
+    margin-top: 20px;
+}
