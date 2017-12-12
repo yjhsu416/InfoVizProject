@@ -47,7 +47,7 @@
 
   var svg = d3.select("div.earthquake").append("svg")
       .attr("width", "100%")
-      .attr("height", 800);
+      .attr("height", 500);
 
   var g = svg.append("g");
 
@@ -56,9 +56,12 @@
 
       
 
-  var x1 = 60+200;
-  var x2 = 300+200;
-  var x3 = 540+200;
+//   var x1 = 60+200;
+//   var x2 = 300+200;
+//   var x3 = 540+200;
+    var x1 = parseInt(svg.style("width"), 10)/2 - 290;
+    var x2 = parseInt(svg.style("width"), 10)/2 - 50;
+    var x3 = parseInt(svg.style("width"), 10)/2 + 190;
   var y1 = 50;
   var y2 = 280;
   var deltay = -170;
