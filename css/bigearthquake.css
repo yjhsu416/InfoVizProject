@@ -2,7 +2,7 @@
 
 circle.datamaps-bubble {
     animation: circleAni;
-    animation-duration: 6s;
+    animation-duration: 3s;
     /*animation-iteration-count: infinite*/
     animation-fill-mode:forwards;
 }
