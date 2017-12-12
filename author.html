@@ -27,17 +27,12 @@
 	</br>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-9" style="width: 75%">
+			<div class="col-sm-12 earthquake" style="width: 100%">
 				<h3>Authors</h3>
 				<!-- Replace the img tag to div or any other kind of tags -->
-        <div class="earthquake"></div>
+<!--         <div class="earthquake"></div> -->
       </div>
-			<div class="col-sm-3" style="width: 25%"> 
-				<h3> </h3>
-        <p>
-        SI649/EECS 548 Group Project</br>
-      
-        </p>
+
 				<!-- Replace the img tag to div or any other kind of tags -->
 				<!-- <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"> -->
 			</div>
@@ -56,7 +51,7 @@
 
 
   var svg = d3.select("div.earthquake").append("svg")
-      .attr("width", 800)
+      .attr("width", "100%")
       .attr("height", 800);
 
   var g = svg.append("g");
@@ -66,9 +61,9 @@
 
       
 
-  var x1 = 60+50;
-  var x2 = 300+50;
-  var x3 = 540+50;
+  var x1 = 60+200;
+  var x2 = 300+200;
+  var x3 = 540+200;
   var y1 = 50;
   var y2 = 280;
   var deltay = -170;
