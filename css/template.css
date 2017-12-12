@@ -122,7 +122,7 @@ div.tab button:hover {
     font-family: Share;
 }
 
-/* Create an active/current tablink class */
+/*/* Create an active/current tablink class */
 div.tab button:active {
-    background-color: #ffffff;
-}
+    background-color: #555555;
+}*/
