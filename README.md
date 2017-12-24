@@ -27,3 +27,10 @@ Yiann Chen, Michael Ho, Debby Hsu, Quianyu Sun, Stephanie Yen
 <a href="https://imgur.com/Zxfj5PZ"><img src="https://i.imgur.com/Zxfj5PZ.png" title="source: imgur.com" width = '600'/></a>
 #### Step6 - Events
 <a href="https://imgur.com/j76V7m7"><img src="https://i.imgur.com/j76V7m7.png" title="source: imgur.com" width = '600'/></a>
+
+### Reference
+- [D3.js](https://d3js.org/) - Information Visualization
+- [D3 Gallery](https://github.com/d3/d3/wiki/Gallery) - Information Visualization
+- [CanvasJs](https://canvasjs.com/) - Information Visualization
+- [Bootstrap](https://getbootstrap.com/) - Website Framework
+- [Kaggle](https://www.kaggle.com/) - Data Resource
