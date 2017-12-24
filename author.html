@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Earthquake 101</title>
+    <title>Earthquake 101</title>
 	<meta charset="utf-8">
-  <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	<link rel="stylesheet" href="css/template.css">
 	<link rel="stylesheet" href="css/earthquake.css">
+    <link rel="icon" href="img/tab_icon.png">
   <script src="https://d3js.org/d3.v3.min.js"></script>
-
 </head>
 <body>
 	<h1 class="text-center">Earthquake 101</h1></br>
@@ -28,7 +30,7 @@
         </div>
     </div>
 		<div class="row">
-			<div class="col-sm-12 earthquake fadeinElement" style="width: 100%">
+			<div class="col-sm-12 faceicon fadeinElement" style="width: 100%">
 				<h3>Authors</h3>
       </div>
 			</div>
@@ -36,150 +38,71 @@
 	</div><br>
 
 	<script type="text/javascript">
-
-//place holder : will put into data.magnitude 
-  var magnitude = 6.3;
-//
-
-  // var width = 1200,
-  //     height = 1200,
-  //     className = "";
-
-
-  var svg = d3.select("div.earthquake").append("svg")
+    var magnitude = 6.3;
+    var svg = d3.select("div.faceicon").append("svg")
       .attr("width", "100%")
       .attr("height", 500);
 
-  var g = svg.append("g");
+    var g = svg.append("g");
 
-  // console.log(className);
-
-
-      
-
-//   var x1 = 60+200;
-//   var x2 = 300+200;
-//   var x3 = 540+200;
+    // Declare horizontal constants
     var x1 = parseInt(svg.style("width"), 10)/2 - 290;
     var x2 = parseInt(svg.style("width"), 10)/2 - 50;
     var x3 = parseInt(svg.style("width"), 10)/2 + 190;
-  var y1 = 50;
-  var y2 = 280;
-  var deltay = -170;
-  var deltax = 40;
-  var chartWidth = 150;
-  var chartHeight = 150;
 
-  var house1_x = x1;
-  var house1_y = y1;
-  var house2_x = x2;
-  var house2_y = y1;
-  var house3_x = x3;
-  var house3_y = y1;
+    // Declare vertical constants
+    var y1 = 50;
+    var y2 = 280;
 
-  var house4_x = x1+100;
-  var house4_y = y2;
-  var house5_x = x2+100;
-  var house5_y = y2;
+    // Declare gap constants
+    var deltay = -170;
+    var deltax = 40;
 
+    // Declare icon size
+    var iconWidth = 150;
+    var iconHeight = 150;
 
+    var icon1_coord = [x1, y1];
+    var icon2_coord = [x2, y1];
+    var icon3_coord = [x3, y1];
+    var icon4_coord = [x1+100, y2];
+    var icon5_coord = [x2+100, y2];
 
-  var text1_x = house1_x+deltax;
-  var text1_y = y1-deltay;
-  var text2_x = house2_x+deltax;
-  var text2_y = y1-deltay;
-  var text3_x = house3_x+deltax;
-  var text3_y = y1-deltay;
+    var text1_coord = [icon1_coord[0]+deltax, y1-deltay];
+    var text2_coord = [icon2_coord[0]+deltax, y1-deltay];
+    var text3_coord = [icon3_coord[0]+deltax, y1-deltay];
+    var text4_coord = [icon4_coord[0]+deltax, y2-deltay];
+    var text5_coord = [icon5_coord[0]+deltax, y2-deltay];
 
-  var text4_x = house4_x+deltax;
-  var text4_y = y2-deltay;
-  var text5_x = house5_x+deltax;
-  var text5_y = y2-deltay;
+    var icon_coord_set = [icon1_coord, icon2_coord, icon3_coord, icon4_coord, icon5_coord];
+    var text_coord_set = [text1_coord, text2_coord, text3_coord, text4_coord, text5_coord];
+    var img_set = ["img/debby.png", "img/qianyu.png", "img/michael.png", "img/yiian.png", "img/stephanie.png"];
+    var text_set = ["Debby Hsu", "Qianyu Sun", "Michael Ho", "Yi-ann Chen", "Stehpanie Yen"];
 
+    function createIcons(coordinate, imgPath){
+      g.append("svg:image")
+        .attr("xlink:href", imgPath)
+        .attr("class", "circle")
+        .attr("x", coordinate[0])
+        .attr("y", coordinate[1])
+        .attr("width", iconWidth)
+        .attr("height", iconHeight);
+    }
 
+    function createText(coordinate, text){
+      g.append("text")
+        .text(text)
+        .style('fill', "white")
+        .attr("x", coordinate[0])
+        .attr("y", coordinate[1]);
+    }
 
+    // Create 6 icons 
+    for (var i = 0; i < img_set.length; i++) {
+      createIcons(icon_coord_set[i], img_set[i]);
+      createText(text_coord_set[i], text_set[i]);
+    }
 
-
-//for show level 1 - 6, can delete in final code//
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/debby.png")
-          .attr("class", "circle")
-          .attr("x", house1_x)
-          .attr("y", house1_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight)
-
-          
-
-  var text = g.append("text")
-          .text('Debby Hsu')
-          .style('fill', "white")
-          .attr("x", text1_x)
-          .attr("y", text1_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/qianyu.png")
-          .attr("class", "circle")
-          .attr("x", house2_x)
-          .attr("y", house2_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-
-  var text = g.append("text")
-          .text('Qianyu Sun')
-          .style('fill', "white")
-          .attr("x", text2_x)
-          .attr("y", text2_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/michael.png")
-          .attr("class", "circle")
-          .attr("x", house3_x)
-          .attr("y", house3_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-  var text = g.append("text")
-          .text('Michael Ho')
-          .style('fill', "white")
-          .attr("x", text3_x)
-          .attr("y", text3_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/yiian.png")
-          .attr("class", "circle")
-          .attr("x", house4_x)
-          .attr("y", house4_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-  var text = g.append("text")
-          .text('Yi-ann Chen')
-          .style('fill', "white")
-          .attr("x", text4_x)
-          .attr("y", text4_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/stephanie.png")
-          .attr("class", "circle")
-          .attr("x", house5_x)
-          .attr("y", house5_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-
-  var text = g.append("text")
-          .text('Stehpanie Yen')
-          .style('fill', "white")
-          .attr("x", text5_x)
-          .attr("y", text5_y)
-
-
-
-
-
-//End - for show level 1 - 6, can delete in final code//
-
-
-
-
-</script>
+  </script>
 </body>
 </html>

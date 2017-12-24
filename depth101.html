@@ -9,8 +9,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/canvasjs.min.js"></script>
+    <link rel="icon" href="img/tab_icon.png">
 	<link rel="stylesheet" href="css/template.css">
-	<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
 </head>
 <body>
 	<h1 class="text-center">Earthquake 101</h1></br>
@@ -29,12 +29,10 @@
 		<div class="row">
 			<div class="col-sm-9 fadeinElement" style="width: 75%">
 				<h3>At what depth do you think earthquakes occur?</h3>
-				<!-- Replace the img tag to div or any other kind of tags -->
 				<img src="img/depth_explain.png" class="img-responsive" style="width:100%" alt="Image">
 			</div>
 			<div class="col-sm-3 fadeinElement" style="width: 25%"> 
 				<h3>Focal Depth 101</h3>
-				<!-- Replace the img tag to div or any other kind of tags -->
 				<p>The focal depth refers to the depth at which an earthquake occurs. Earthquakes occurring at a depth of less than 70 km are classified as shallow-focus earthquakes, while those with a focal depth between 70 km and 300 km are commonly termed intermediate-depth earthquakes.
 				Deep-focus earthquakes may occur at much greater depths in the mantle, ranging from 300 km up to 700 km, where older and colder oceanic crust descends beneath another tectonic plate.
                 </p>
@@ -57,7 +55,6 @@
                         theme: "dark1", // "light1", "light2", "dark1", "dark2"
                         axisX:{
                             title: "Depth Level",
-//                             gridThickness: 0,
                             fontFamily: "share",
                             titleFontSize: 7,
                             fontSize: 13,
@@ -69,8 +66,7 @@
                             titleFontSize: 7,
                         },
                         data: [{
-                            type: "column", //change type to bar, line, area, pie, etc
-                            //indexLabel: "{y}", //Shows y value on all Data Points
+                            type: "column",
                             indexLabelFontColor: "#5A5757",
                             indexLabelPlacement: "outside",
                             dataPoints: [

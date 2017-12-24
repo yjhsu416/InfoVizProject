@@ -3,15 +3,19 @@
 <head>
   <title>Earthquake 101</title>
 	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="icon" href="img/tab_icon.png">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="css/template.css">
+	
+  <link rel="stylesheet" href="css/template.css">
 	<link rel="stylesheet" href="css/earthquake.css">
-  <script src="https://d3js.org/d3.v3.min.js"></script>
 
+  <script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
 	<h1 class="text-center">Earthquake 101</h1></br>
@@ -30,206 +34,118 @@
 		<div class="row">
 			<div class="col-sm-9 fadeinElement" style="width: 75%">
 				<h3>How it looks when earthquake happens?</h3>
-				<!-- Replace the img tag to div or any other kind of tags -->
         <div class="earthquake slowFadeinElement"></div>
       </div>
 			<div class="col-sm-3 fadeinElement" style="width: 25%"> 
 				<h3>Maginitude Simulator</h3>
-        <p>The Richter magnitude scale (ML, also Richter scale) assigns a magnitude number to quantify the size of an earthquake. The Richter scale, developed in the 1930s, is a base-10 logarithmic scale in order to cover the huge range of earthquakes. It defines magnitude as the logarithm of the ratio of the amplitude of the seismic waves to an arbitrary, minor amplitude, as recorded on a standardized seismograph at a standard distance.</p>
-				<!-- Replace the img tag to div or any other kind of tags -->
-				<!-- <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"> -->
+        <p>The Richter magnitude scale (ML, also Richter scale) assigns a magnitude number to quantify the size of an earthquake. The Richter scale, developed in the 1930s, is a base-10 logarithmic scale in order to cover the huge range of earthquakes. It defines magnitude as the logarithm of the ratio of the amplitude of the seismic waves to an arbitrary, minor amplitude, as recorded on a standardized seismograph at a standard distance.</p></br>
+        <h3>Note</h3>
+        <p>The simulator on the left represent shaking level of the house under different level of magnitude. We use relative scale instead of absolute scale to represent earthquake magnitude levels. </p>
 			</div>
 		</div>
 	</div><br>
 
 	<script type="text/javascript">
-
-//place holder : will put into data.magnitude 
-  var magnitude = 6.3;
-//
-
-  // var width = 1200,
-  //     height = 1200,
-  //     className = "";
-
-
-  var svg = d3.select("div.earthquake").append("svg")
+    //place holder : will put into data.magnitude 
+    var magnitude = 6.3;
+    var svg = d3.select("div.earthquake").append("svg")
       .attr("width", 800)
       .attr("height", 800);
 
-  var g = svg.append("g");
-  level(magnitude);
-  // console.log(className);
+    var g = svg.append("g");
 
+    // Declare horizontal coordinate constants
+    var x1 = 60;
+    var x2 = 300;
+    var x3 = 540;
 
-      
+    // Declare vertical coordinate constants
+    var y1 = 50;
+    var y2 = 280;
 
-  var x1 = 60;
-  var x2 = 300;
-  var x3 = 540;
-  var y1 = 50;
-  var y2 = 280;
-  var deltay = -170;
-  var deltax = 20;
-  var chartWidth = 150;
-  var chartHeight = 150;
+    // Declare gap constants
+    var deltay = -170;
+    var deltax = 20;
 
-  var house1_x = x1;
-  var house1_y = y1;
-  var house2_x = x2;
-  var house2_y = y1;
-  var house3_x = x3;
-  var house3_y = y1;
+    // Declare chart size
+    var chartWidth = 150;
+    var chartHeight = 150;
 
-  var house4_x = x1;
-  var house4_y = y2;
-  var house5_x = x2;
-  var house5_y = y2;
-  var house6_x = x3;
-  var house6_y = y2;
+    // House coordinates
+    var house1_coord = [x1, y1];
+    var house2_coord = [x2, y1];
+    var house3_coord = [x3, y1];
+    var house4_coord = [x1, y2];
+    var house5_coord = [x2, y2];
+    var house6_coord = [x3, y2];
 
+    // Text coordinates
+    var text1_coord = [house1_coord[0]+deltax, y1-deltay];
+    var text2_coord = [house2_coord[0]+deltax, y1-deltay];
+    var text3_coord = [house3_coord[0]+deltax, y1-deltay];
+    var text4_coord = [house4_coord[0]+deltax, y2-deltay];
+    var text5_coord = [house5_coord[0]+deltax, y2-deltay];
+    var text6_coord = [house6_coord[0]+deltax, y2-deltay];
 
-  var text1_x = house1_x+deltax;
-  var text1_y = y1-deltay;
-  var text2_x = house2_x+deltax;
-  var text2_y = y1-deltay;
-  var text3_x = house3_x+deltax;
-  var text3_y = y1-deltay;
+    hourse_coord_set = [house1_coord, house2_coord, house3_coord, house4_coord, house5_coord, house6_coord];
+    text_coord_set = [text1_coord, text2_coord, text3_coord, text4_coord, text5_coord, text6_coord];
+    text_set = ["Magnitude: 4.0", "Magnitude: 5.0", "Magnitude: 6.0", "Magnitude: 7.0", "Magnitude: 8.0", "Magnitude: 9.0"]
 
-  var text4_x = house4_x+deltax;
-  var text4_y = y2-deltay;
-  var text5_x = house5_x+deltax;
-  var text5_y = y2-deltay;
-  var text6_x = house6_x+deltax;
-  var text6_y = y2-deltay;
-
-
-
-
-//for show level 1 - 6, can delete in final code//
-  var imgs = g.append("svg:image")
+    function createHouseIcons(coordinate, index){
+      g.append("svg:image")
           .attr("xlink:href", "img/house01.png")
-          .attr("class", "level1")
-          .attr("x", house1_x)
-          .attr("y", house1_y)
+          .attr("class", getLevel(index))
+          .attr("x", coordinate[0])
+          .attr("y", coordinate[1])
           .attr("width", chartWidth)
           .attr("height", chartHeight);
-
-  var text = g.append("text")
-                        .text('Magnitude: 4.0')
-                        .style('fill', "white")
-                        .attr("x", text1_x)
-                        .attr("y", text1_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/house01.png")
-          .attr("class", "level2")
-          .attr("x", house2_x)
-          .attr("y", house2_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-
-  var text = g.append("text")
-          .text('Magnitude: 5.0')
-          .style('fill', "white")
-          .attr("x", text2_x)
-          .attr("y", text2_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/house01.png")
-          .attr("class", "level3")
-          .attr("x", house3_x)
-          .attr("y", house3_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-  var text = g.append("text")
-          .text('Magnitude: 6.0')
-          .style('fill', "white")
-          .attr("x", text3_x)
-          .attr("y", text3_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/house01.png")
-          .attr("class", "level4")
-          .attr("x", house4_x)
-          .attr("y", house4_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-  var text = g.append("text")
-          .text('Magnitude: 7.0')
-          .style('fill', "white")
-          .attr("x", text4_x)
-          .attr("y", text4_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/house01.png")
-          .attr("class", "level5")
-          .attr("x", house5_x)
-          .attr("y", house5_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-
-  var text = g.append("text")
-          .text('Magnitude: 8.0')
-          .style('fill', "white")
-          .attr("x", text5_x)
-          .attr("y", text5_y)
-
-  var imgs = g.append("svg:image")
-          .attr("xlink:href", "img/house01.png")
-          .attr("class", "level6")
-          .attr("x", house6_x)
-          .attr("y", house6_y)
-          .attr("width", chartWidth)
-          .attr("height", chartHeight);
-
-  var text = g.append("text")
-          .text('Magnitude: 9.0')
-          .style('fill', "white")
-          .attr("x", text6_x)
-          .attr("y", text6_y)
-
-
-
-//End - for show level 1 - 6, can delete in final code//
-
-
-  function level(magnitude) {
-
-    if (magnitude<6) {
-        // console.log("level1")
-        className = "level1";
-        return className;
-    
-    } else if (magnitude>=6 && magnitude<6.5) {
-        // console.log("level2") 
-        className = "level2";
-        return className;
-
-    } else if (magnitude>=6.5 && magnitude<7) {
-        // console.log("level3") 
-        className = "level3";
-        return className;
-
-    } else if (magnitude>=7 && magnitude<7.5) {
-        // console.log("level4") 
-        className = "level4";
-        return className;
-
-    } else if (magnitude>=7.5 && magnitude<8) {
-        // console.log("level5") 
-        className = "level5";
-        return className;
-
-    } else{
-        // console.log("level6") 
-        className = "level6";
-        return className;
-
     }
 
-  }
+    function createText(coordinate, text){
+      g.append("text")
+        .text(text)
+        .style('fill', "white")
+        .attr("x", coordinate[0])
+        .attr("y", coordinate[1])
+    }
 
-</script>
+    function getLevel(index){
+      var level = "level1";
+
+      switch(index){
+        case 0:
+          level = "level1";
+          break;
+        case 2:
+          level = "level2";
+          break;
+        case 3:
+          level = "level3";
+          break;
+        case 4:
+          level = "level4";
+          break;
+        case 5:
+          level = "level5";
+          break;
+        case 6:
+          level = "level6";
+          break;
+        default:
+          break;
+      }
+
+      return level;
+    }
+
+    // Create 6 icons 
+    for (var i = 0; i < hourse_coord_set.length; i++) {
+      createHouseIcons(hourse_coord_set[i], i);
+      createText(text_coord_set[i], text_set[i]);
+    }
+
+    //End - for show level 1 - 6, can delete in final code//
+
+  </script>
 </body>
 </html>

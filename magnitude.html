@@ -6,10 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="img/tab_icon.png">
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/canvasjs.min.js"></script>
+
 	<link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet'>
 	<link rel="stylesheet" href="css/template.css">
     <link rel="stylesheet" href="css/magnitude.css">
@@ -30,7 +32,7 @@
         </div>
 		<div class="row">
 			<div class="col-sm-9 fadeinElement" style="width: 75%">
-                <h3>Do you know the magnitude of earthquake over years?</h3>
+                <h3>Do you know the magnitude of earthquakes over years?</h3>
 				<div id="chartContainer" style="height: 400px"></div><br>
                 <div class="btn-group slowFadeinElement" style="width: 100%;">
                     <button type="button" style="width: 25%;" class="btn btn-primary scalebutton" onclick="updateChart(0)">View all</button>
@@ -98,10 +100,7 @@
         switch(set) {
             case 0:
                 createChart(dataPoints.slice(0));
-                document.getElementById("percentageChartContainer").innerHTML = "";
-                document.getElementById("percentageChartContainer").style.height = "0px";
-                document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
-                document.getElementById("sideTextContent").innerHTML = sideText;
+                removeChart();
                 break;
             case 1:
                 createChart(dataPoints.slice(5, 15));
@@ -117,12 +116,16 @@
                 break;
             default:
                 createChart(dataPoints.slice(5));
-                document.getElementById("percentageChartContainer").innerHTML = "";
-                document.getElementById("percentageChartContainer").style.height = "0px";
-                document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
-                document.getElementById("sideTextContent").innerHTML = sideText;
+                removeChart();
                 break;
         }
+    }
+
+    function removeChart(){
+        document.getElementById("percentageChartContainer").innerHTML = "";
+        document.getElementById("percentageChartContainer").style.height = "0px";
+        document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
+        document.getElementById("sideTextContent").innerHTML = sideText;   
     }
 
     function createChart(newDataPoints){
@@ -152,6 +155,7 @@
 		chart.render();
 	}
 
+    // Change to theme color
     CanvasJS.addColorSet("earthquakeTheme",
     [
         "#6a96ce",
@@ -194,7 +198,7 @@
                 break;
             case 3:
                 return [
-                     { y: 40, label: "Over 8.0" },
+                    { y: 40, label: "Over 8.0" },
                     { y: 23373, label: "Other" }
                 ]
                 break;

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>Earthquake 101</title>
 	<meta charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
@@ -14,12 +14,13 @@
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="js/datamaps.world.min.js"></script>
     <script src="js/datamaps2.world.min.js"></script>
+
     <link rel="stylesheet" href="css/template.css">
     <link rel="stylesheet" type="text/css" href="css/bigearthquake.css">
     <link rel="stylesheet" type="text/css" href="css/maploop.css">
-	<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+    <link rel="icon" href="img/tab_icon.png">
+    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
 <style>
     #container1 { border:0px ; width: 800px; height: 450px;margin:0 auto; }
 </style>
@@ -41,7 +42,6 @@
 		<div class="row">
 			<div class="col-sm-9 fadeinElement" style="width: 75%">
 				<h3 id="titleEvnet">Lots of earthquakes happened over the years. Some were very big...</h3>
-				<!-- Replace the img tag to div or any other kind of tags -->
                 <div class="row" style="width: 100%;">
                     <div class="col-sm-12">
                         <div id="container1" class="fadeinElement"></div>
@@ -83,8 +83,6 @@
     function ready(error, data) {
         var eqdata = data;
         var yearPlot = "2016";
-        // var yearPlot = document.getElementById("range").innerHTML;
-        // console.log(yearPlot); //get this value from slider
 
         //radius scale and color scale
         var rScale = d3.scale.linear()
@@ -99,7 +97,6 @@
                 year = year+eqdata[idx].Date[i];
             }
             if(year == yearPlot) {
-                //console.log(year);
                 yearIndex.push(idx);
             }
         }
@@ -145,7 +142,7 @@
                 borderWidth: 0,
                 borderColor: '#FFFFFF'
             })
-             // console.log(eqdata[i].Magnitude)
+             // console.log(eqdata[i].Magnitude);
         }
 
         //render map only once.
@@ -212,16 +209,7 @@
         }
     }
 
-
-  // var ggg = d3.select("div#container1").append("circle")
-  //     .attr("cx", 200)
-  //     .attr("cy", 200)
-  //     .attr("r", 50)
-  //     .style("fill", "black");
-
-    
-    var delayInMilliseconds = 5000; //1 second
-    // d3.selectAll("svg.datamap").remove();
+    var delayInMilliseconds = 3000;
 
     setTimeout(function() {
         special();
@@ -248,12 +236,9 @@
 
             //get year of 1965, store index to yearIndex
             var yearIndex = new Array();
-
+            // Selected event indices
             yearIndex.push("17083","20501", "19928");
-            // console.log(yearIndex);
-            // console.log(eqdata[17083]);
-            // console.log(eqdata[20501]);
-            // console.log(eqdata[19928]);
+
 
             //create bomb data
             var bombsnew = [];
@@ -296,7 +281,7 @@
                     borderWidth: 0,
                     borderColor: '#FFFFFF'
                 })
-                 // console.log(eqdata[i].Magnitude)
+                // console.log(eqdata[i].Magnitude);
             }
 
             //render map only once.
@@ -309,7 +294,6 @@
             bombMap.bubbles(bombsnew, {
 
                 popupTemplate: function (geo, data) {
-                    
                     
                     eventName=data.name;
                     console.log(eventName);
@@ -350,8 +334,6 @@
             }
 
             function switchTextContent2(eventName){
-                 // if(eventName="02/27/,06:34:12"){
-                    // console.log(eventName);
                     document.getElementById("t1").innerHTML = "Chile";
                     document.getElementById("m1").innerHTML = "Magnitude 8.8"
                     document.getElementById("d1").innerHTML = "February 27, 2010"
@@ -370,11 +352,8 @@
             }
 
             function switchTextContent3(eventName){
-                                // 
-                // }else if(eventName="12/26/,00:58:53"){
-                    // console.log(eventName);
                     document.getElementById("t1").innerHTML = "Indian Ocean";
-                     document.getElementById("m1").innerHTML = "Magnitude 9.1"
+                    document.getElementById("m1").innerHTML = "Magnitude 9.1"
                     document.getElementById("d1").innerHTML = "December 26, 2004"
                     var img = document.createElement("img");
                     img.src = "img/south.jpg";
@@ -418,21 +397,11 @@
                     highlightBorderOpacity: 1,
                     highlightFillOpacity: 0.85,
                 },
-                // data: {
-                //     // 'RUS': {fillKey: 'RUS'},
-                //     // 'USA': {fillKey: 'USA'}
-                // }
                 });
                 return Map;
             }
         }
     }, delayInMilliseconds);
-    
-    
-    
-
-// 
-    
     
 </script>
 </body>
