@@ -98,10 +98,7 @@
         switch(set) {
             case 0:
                 createChart(dataPoints.slice(0));
-                document.getElementById("percentageChartContainer").innerHTML = "";
-                document.getElementById("percentageChartContainer").style.height = "0px";
-                document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
-                document.getElementById("sideTextContent").innerHTML = sideText;
+                removeChart();
                 break;
             case 1:
                 createChart(dataPoints.slice(5, 15));
@@ -117,12 +114,16 @@
                 break;
             default:
                 createChart(dataPoints.slice(5));
-                document.getElementById("percentageChartContainer").innerHTML = "";
-                document.getElementById("percentageChartContainer").style.height = "0px";
-                document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
-                document.getElementById("sideTextContent").innerHTML = sideText;
+                removeChart();
                 break;
         }
+    }
+
+    function removeChart(){
+        document.getElementById("percentageChartContainer").innerHTML = "";
+        document.getElementById("percentageChartContainer").style.height = "0px";
+        document.getElementById("sideTitle").innerHTML = "Basic Knowledge";
+        document.getElementById("sideTextContent").innerHTML = sideText;   
     }
 
     function createChart(newDataPoints){
@@ -152,6 +153,7 @@
 		chart.render();
 	}
 
+    // Change to theme color
     CanvasJS.addColorSet("earthquakeTheme",
     [
         "#6a96ce",
@@ -194,7 +196,7 @@
                 break;
             case 3:
                 return [
-                     { y: 40, label: "Over 8.0" },
+                    { y: 40, label: "Over 8.0" },
                     { y: 23373, label: "Other" }
                 ]
                 break;
