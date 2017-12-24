@@ -3,12 +3,12 @@
 
 ### Earthquake
 Help you learn earthquake in **6 steps**!
-- Step1 - Overview: How many earthquakes occurred every year?
-- Step2 - Plate Map: Why do earthquakes frequently happen in these areas?
-- Step3 - Depth: At what depth do you think earthquakes occur?
-- Step4 - Magnitude: Do you know the magnitude of earthquakes over years?
-- Step5 - Simulator: How it looks when earthquake happens?
-- Step6 - Events: Let's review the three most severe earthquakes occured in the last 50 years.
+- **Step1 - Overview**: How many earthquakes occurred every year?
+- **Step2 - Plate Map**: Why do earthquakes frequently happen in these areas?
+- **Step3 - Depth**: At what depth do you think earthquakes occur?
+- **Step4 - Magnitude**: Do you know the magnitude of earthquakes over years?
+- **Step5 - Simulator**: How it looks when earthquake happens?
+- **Step6 - Events**: Let's review the three most severe earthquakes occured in the last 50 years.
 
 ### Website Link
 Click to go to [Earthquake Information Visualization website](http://13.59.156.144/infoviz_group7/InfoVizProject/index.html).
